@@ -1056,11 +1056,13 @@ void VersionSet::Finalize(Version* v) {
       // file size is small (perhaps because of a small write-buffer
       // setting, or very high compression ratios, or lots of
       // overwrites/deletions).
+      // 如果 L0 的文件数量 v->files_[0].size() 达到或超过 config::kL0_CompactionTrigger (默认为4)，那么 score 就会大于等于 1
       score = v->files_[level].size() /
               static_cast<double>(config::kL0_CompactionTrigger);
     } else {
       // Compute the ratio of current size to size limit.
       const uint64_t level_bytes = TotalFileSize(v->files_[level]);
+      // 如果该层的总字节数 level_bytes 达到或超过了该层允许的最大字节数 MaxBytesForLevel(...)，那么 score 就会大于等于 1
       score =
           static_cast<double>(level_bytes) / MaxBytesForLevel(options_, level);
     }
@@ -1261,6 +1263,9 @@ Iterator* VersionSet::MakeInputIterator(Compaction* c) {
   return result;
 }
 
+// 当确定需要 Compaction 后，此方法负责选择具体要合并哪些文件
+// 它会优先考虑手动 Compaction，然后是 L0 的 Compaction，最后是其他层的 Size Compaction
+// db_impl.cc 中的BackgroundCompaction() 方法会调用这个方法
 Compaction* VersionSet::PickCompaction() {
   Compaction* c;
   int level;
@@ -1268,16 +1273,18 @@ Compaction* VersionSet::PickCompaction() {
   // We prefer compactions triggered by too much data in a level over
   // the compactions triggered by seeks.
   const bool size_compaction = (current_->compaction_score_ >= 1);
+  // 当某个SSTable文件由于频繁的Get操作未命中（allowed_seeks耗尽）而被标记为需要Compaction时触发
   const bool seek_compaction = (current_->file_to_compact_ != nullptr);
   if (size_compaction) {  // 策略1）基于score的compact选取策略，此前Finalize已经选好了level i
     level = current_->compaction_level_;
     assert(level >= 0);
     assert(level + 1 < config::kNumLevels);
-    c = new Compaction(options_, level);
+    c = new Compaction(options_, level);    // 创建Compaction对象，指定了源level
 
     // Pick the first file that comes after compact_pointer_[level]
     for (size_t i = 0; i < current_->files_[level].size(); i++) {
       FileMetaData* f = current_->files_[level][i];
+      // 如果 compact_pointer 为空 (首次Compaction) 或者当前文件的最大key大于 compact_pointer，则选择此文件
       if (compact_pointer_[level].empty() ||
           icmp_.Compare(f->largest.Encode(), compact_pointer_[level]) > 0) {  // compact_pointer是每层level的一个轮转指针，确保每个sst都陆续排队参与compact
         c->inputs_[0].push_back(f); // 只选1个SST就break
@@ -1286,31 +1293,30 @@ Compaction* VersionSet::PickCompaction() {
     }
     if (c->inputs_[0].empty()) {
       // Wrap-around to the beginning of the key space
-      c->inputs_[0].push_back(current_->files_[level][0]);  // compact_pointer后没有SST可以参与compact，那么选本层第0个文件即可
+      // 如果遍历完所有文件都没有找到在 compact_pointer 之后的文件（即 compact_pointer 已经是最后一个文件的最大key），则从该层的第一个文件开始选择
+      c->inputs_[0].push_back(current_->files_[level][0]);
     }
   } else if (seek_compaction) { //  策略2）基于Get时miss的统计计算出的1个SST，直接对它compact
     level = current_->file_to_compact_level_;
     c = new Compaction(options_, level);
     c->inputs_[0].push_back(current_->file_to_compact_);
   } else {
-    return nullptr;
+    return nullptr; // 如果两种Compaction条件都不满足，则不进行Compaction
   }
 
-  c->input_version_ = current_;
+  c->input_version_ = current_; // 设置Compaction操作基于的当前Version
   c->input_version_->Ref();
 
-  // Files in level 0 may overlap each other, so pick up all overlapping ones
+  // 在进入if之前，c->inputs_[0]通常只有一个SSTable
   if (level == 0) { // level0的sst作为compact发起者的时候，需要把同层overlap的sst都加进来
     InternalKey smallest, largest;
     GetRange(c->inputs_[0], &smallest, &largest);   //  统计这些主动发起compact SST的最小和最大key
-    // Note that the next call will discard the file we placed in
-    // c->inputs_[0] earlier and replace it with an overlapping set
-    // which will include the picked file.
-    current_->GetOverlappingInputs(0, &smallest, &largest, &c->inputs_[0]); // 把level0中overlap的其他SST找出来
+    // 把level0中overlap的其他SST找出来，清空并重新填充 c->inputs_[0]
+    current_->GetOverlappingInputs(0, &smallest, &largest, &c->inputs_[0]); 
     assert(!c->inputs_[0].empty());
   }
-
-  SetupOtherInputs(c);  // 扩展level层的SST范围（牵扯的到同key的多个版本跨SST边界问题），然后与level+1层求overlap的sst
+  // 执行完毕后，c->inputs_[0] 和 c->inputs_[1] 就包含了所有需要合并的SSTable文件元数据
+  SetupOtherInputs(c);  
 
   return c;
 }

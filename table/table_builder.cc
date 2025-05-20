@@ -35,29 +35,20 @@ struct TableBuilder::Rep {
     index_block_options.block_restart_interval = 1;
   }
 
-  Options options;
-  Options index_block_options;
-  WritableFile* file;
-  uint64_t offset;
-  Status status;
-  BlockBuilder data_block;
-  BlockBuilder index_block;
-  std::string last_key;
-  int64_t num_entries;
-  bool closed;  // Either Finish() or Abandon() has been called.
-  FilterBlockBuilder* filter_block;
+  Options options;  // 表的选项
+  Options index_block_options; // 索引块的选项
+  WritableFile* file; // 底层可写文件
+  uint64_t offset;    // 文件当前的偏移量
+  Status status;      // 当前的状态
+  BlockBuilder data_block; // 当前数据块的构建器
+  BlockBuilder index_block; // 索引块的构建器
+  std::string last_key;   // 添加到当前数据块的最后一个键
+  int64_t num_entries;    // 表中条目的总数
+  bool closed;  // Finish() 或 Abandon() 是否已被调用
+  FilterBlockBuilder* filter_block; // 过滤器块的构建器
 
-  // We do not emit the index entry for a block until we have seen the
-  // first key for the next data block.  This allows us to use shorter
-  // keys in the index block.  For example, consider a block boundary
-  // between the keys "the quick brown fox" and "the who".  We can use
-  // "the r" as the key for the index block entry since it is >= all
-  // entries in the first block and < all entries in subsequent
-  // blocks.
-  //
-  // Invariant: r->pending_index_entry is true only if data_block is empty.
-  bool pending_index_entry;
-  BlockHandle pending_handle;  // Handle to add to index block
+  bool pending_index_entry; // 是否有待处理的索引条目
+  BlockHandle pending_handle;  // 要添加到索引块的句柄
 
   std::string compressed_output;
 };

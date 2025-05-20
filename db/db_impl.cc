@@ -39,7 +39,7 @@ namespace leveldb {
 
 const int kNumNonTableCacheFiles = 10;
 
-// Information kept for every waiting writer
+// 一个写入线程一个Writer实例
 struct DBImpl::Writer {
   explicit Writer(port::Mutex* mu)
       : batch(nullptr), sync(false), done(false), cv(mu) {}
@@ -663,7 +663,9 @@ void DBImpl::RecordBackgroundError(const Status& s) {
   }
 }
 
-  
+// 这个方法在每次写入操作完成、数据库打开或后台任务空闲时被调用，用来检查是否需要进行 Compaction
+// 如果需要，就会去执行 Compaction
+// MaybeScheduleCompaction -> BGwork -> BackgroundCall -> BackgroundCompaction -> (PickCompaction, DoCompactionWork)
 void DBImpl::MaybeScheduleCompaction() {
   mutex_.AssertHeld();
   if (background_compaction_scheduled_) {
@@ -1408,7 +1410,7 @@ Status DBImpl::MakeRoomForWrite(bool force) {
       mem_ = new MemTable(internal_comparator_);
       mem_->Ref();
       force = false;  // Do not force another compaction if have room
-      MaybeScheduleCompaction();
+      MaybeScheduleCompaction();    
     }
   }
   return s;

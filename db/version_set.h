@@ -250,6 +250,7 @@ class VersionSet {
   Iterator* MakeInputIterator(Compaction* c);
 
   // Returns true iff some level needs a compaction.
+  // 这个方法由 Version 对象调用，具体判断是否需要 Compaction
   bool NeedsCompaction() const {
     Version* v = current_;
     return (v->compaction_score_ >= 1) || (v->file_to_compact_ != nullptr);
