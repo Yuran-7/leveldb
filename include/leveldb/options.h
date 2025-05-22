@@ -98,12 +98,12 @@ struct LEVELDB_EXPORT Options {
   // block size specified here corresponds to uncompressed data.  The
   // actual size of the unit read from disk may be smaller if
   // compression is enabled.  This parameter can be changed dynamically.
-  size_t block_size = 4 * 1024;
+  size_t block_size = 4 * 1024; // SSTable中的物理块，默认4KB
 
   // Number of keys between restart points for delta encoding of keys.
   // This parameter can be changed dynamically.  Most clients should
   // leave this parameter alone.
-  int block_restart_interval = 16;
+  int block_restart_interval = 16;  // data block中间隔16个entry存一个restart point
 
   // Leveldb will write up to this amount of bytes to a file before
   // switching to a new one.
@@ -144,7 +144,7 @@ struct LEVELDB_EXPORT Options {
   // If non-null, use the specified filter policy to reduce disk reads.
   // Many applications will benefit from passing the result of
   // NewBloomFilterPolicy() here.
-  const FilterPolicy* filter_policy = nullptr;
+  const FilterPolicy* filter_policy = nullptr;  // 需要手动指定过滤器（包括布隆过滤器）
 };
 
 // Options that control read operations

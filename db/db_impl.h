@@ -28,10 +28,10 @@ class VersionSet;
 
 class DBImpl : public DB {
  public:
-  DBImpl(const Options& options, const std::string& dbname);
+  DBImpl(const Options& options, const std::string& dbname);    // Open函数中调用
 
-  DBImpl(const DBImpl&) = delete;
-  DBImpl& operator=(const DBImpl&) = delete;
+  DBImpl(const DBImpl&) = delete;   // 禁止 DBImpl new_db = existing_db;
+  DBImpl& operator=(const DBImpl&) = delete;    // 禁止 DBImpl new_db(existing_db);
 
   ~DBImpl() override;
 

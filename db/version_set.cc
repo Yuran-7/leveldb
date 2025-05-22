@@ -862,7 +862,17 @@ Status VersionSet::LogAndApply(VersionEdit* edit, port::Mutex* mu) {
 
   return s;
 }
+/*
+VersionSet::Recover 通过读取 MANIFEST 文件中的一系列 VersionEdit，重建出一个代表数据库最新状态的 Version 对象，
+并更新 VersionSet 自身的全局元数据信息。save_manifest 标志则告诉上层是否需要基于这个恢复后的状态生成一个新的 MANIFEST 文件。
 
+1.找到 MANIFEST 文件：通过读取 CURRENT 文件，找到当前有效的 MANIFEST 文件名。
+2.读取 MANIFEST 内容：逐条读取 MANIFEST 文件中的记录。
+3.应用变更：每条记录都是一个 VersionEdit 的序列化形式。函数会将这些 VersionEdit 反序列化，并应用到一个临时的构建器（VersionSet::Builder）中，这个构建器会逐步累积这些变更，形成数据库最新的元数据视图。
+4.更新 VersionSet 状态：根据从 MANIFEST 中读取到的信息（比如下一个可用的文件编号、当前的日志文件号、最后使用的序列号等），更新 VersionSet 自身的成员变量。
+5.创建最终 Version：当所有 MANIFEST 记录都处理完毕后，Builder 会将累积的元数据状态保存到一个新的 Version 对象中。这个 Version 对象就代表了数据库恢复后的完整状态。
+6.决定是否重写 MANIFEST：最后，它会判断当前的 MANIFEST 文件是否可以继续使用（追加写入），或者是否因为太大或配置不允许重用等原因需要创建一个全新的 MANIFEST 文件。这个决定会通过 *save_manifest = true（需要创建新的）或 false（可重用旧的）返回给调用者。
+*/
 Status VersionSet::Recover(bool* save_manifest) {
   struct LogReporter : public log::Reader::Reporter {
     Status* status;
