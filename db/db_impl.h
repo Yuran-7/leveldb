@@ -20,31 +20,32 @@
 
 namespace leveldb {
 
-class MemTable;
-class TableCache;
-class Version;
-class VersionEdit;
-class VersionSet;
+class MemTable; // memtable.h
+class TableCache; // table_cache.h
+class Version;  // version_set.h
+class VersionEdit;  // version_edit.h
+class VersionSet; // version_set.h
 
 class DBImpl : public DB {
  public:
-  DBImpl(const Options& options, const std::string& dbname);
+  DBImpl(const Options& options, const std::string& dbname);    // Open函数中调用
 
-  DBImpl(const DBImpl&) = delete;
-  DBImpl& operator=(const DBImpl&) = delete;
+  DBImpl(const DBImpl&) = delete;   // 禁止 DBImpl new_db(existing_db);
+  DBImpl& operator=(const DBImpl&) = delete;    // 禁止 DBImpl new_db = existing_db;
 
   ~DBImpl() override;
 
   // Implementations of the DB interface
+  // Slice只支持char*和std::string，所以如果要存数字，需要序列化成字符串
   Status Put(const WriteOptions&, const Slice& key,
              const Slice& value) override;
   Status Delete(const WriteOptions&, const Slice& key) override;
   Status Write(const WriteOptions& options, WriteBatch* updates) override;
   Status Get(const ReadOptions& options, const Slice& key,
-             std::string* value) override;
-  Iterator* NewIterator(const ReadOptions&) override;
-  const Snapshot* GetSnapshot() override;
-  void ReleaseSnapshot(const Snapshot* snapshot) override;
+             std::string* value) override;  // value是输出参数
+  Iterator* NewIterator(const ReadOptions&) override; // Iterator是一个抽象类，这里返回的应该是DBIter子类
+  const Snapshot* GetSnapshot() override;   // SnapshotImpl，双向链表，SequenceNumber（uint64_t）
+  void ReleaseSnapshot(const Snapshot* snapshot) override;  // 从双向链表中删除
   bool GetProperty(const Slice& property, std::string* value) override;
   void GetApproximateSizes(const Range* range, int n, uint64_t* sizes) override;
   void CompactRange(const Slice* begin, const Slice* end) override;
@@ -66,9 +67,7 @@ class DBImpl : public DB {
   // file at a level >= 1.
   int64_t TEST_MaxNextLevelOverlappingBytes();
 
-  // Record a sample of bytes read at the specified internal key.
-  // Samples are taken approximately once every config::kReadBytesPeriod
-  // bytes.
+  // 通过对读取操作进行采样，来收集关于数据访问模式的信息（allowed_seeks）
   void RecordReadSample(Slice key);
 
  private:
@@ -173,20 +172,23 @@ class DBImpl : public DB {
   // State below is protected by mutex_
   port::Mutex mutex_;
   std::atomic<bool> shutting_down_;
+  // 一个条件变量，协调后台工作线程与前台线程之间的同步
+  // 这是一个静态分析注解，它告诉编译器和开发者，
+  // 所有操作（如 Wait(), Signal(), SignalAll()）都必须在持有 mutex_ 互斥锁的情况下进行
   port::CondVar background_work_finished_signal_ GUARDED_BY(mutex_);
   MemTable* mem_;
   MemTable* imm_ GUARDED_BY(mutex_);  // Memtable being compacted
   std::atomic<bool> has_imm_;         // So bg thread can detect non-null imm_
-  WritableFile* logfile_;
-  uint64_t logfile_number_ GUARDED_BY(mutex_);
-  log::Writer* log_;
+  WritableFile* logfile_;   // 指向当前打开的、可写入的日志文件的文件句柄
+  uint64_t logfile_number_ GUARDED_BY(mutex_);  // 存储当前正在使用的日志文件的编号，例如 000005.log 中的 5
+  log::Writer* log_;    // 负责将日志记录序列化成特定格式，并写入到日志文件中
   uint32_t seed_ GUARDED_BY(mutex_);  // For sampling.
 
   // Queue of writers.
   std::deque<Writer*> writers_ GUARDED_BY(mutex_);
   WriteBatch* tmp_batch_ GUARDED_BY(mutex_);
 
-  SnapshotList snapshots_ GUARDED_BY(mutex_);
+  SnapshotList snapshots_ GUARDED_BY(mutex_);   // SnapshotImpl head_;
 
   // Set of table files to protect from deletion because they are
   // part of ongoing compactions.

@@ -6,3 +6,9 @@
 # Build directory.
 build/
 out/
+
+tests/testdb
+
+tests/workload.txt
+
+tests/workload_runner
