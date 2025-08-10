@@ -86,9 +86,9 @@ class VersionEdit {
   typedef std::set<std::pair<int, uint64_t>> DeletedFileSet;
 
   std::string comparator_;
-  uint64_t log_number_;
+  uint64_t log_number_; // 只记录WAL文件的编号，不会记录SST的编号
   uint64_t prev_log_number_;
-  uint64_t next_file_number_;
+  uint64_t next_file_number_; // 全局文件编号计数器，.log，.sst，MANIFEST-xxxxxx等文件的编号
   SequenceNumber last_sequence_;
   bool has_comparator_;
   bool has_log_number_;

@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
     leveldb::Options options;
     options.create_if_missing = true; // Create the database if it doesn't exist
 
-    leveldb::Status status = leveldb::DB::Open(options, db_path, &db);
+    leveldb::Status status = leveldb::DB::Open(options, db_path, &db);  // 将impl类型的指针赋值给db
     if (!status.ok()) {
         std::cerr << "Error opening database " << db_path << ": " << status.ToString() << std::endl;
         return 1;

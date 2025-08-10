@@ -307,8 +307,8 @@ class VersionSet {
   // Opened lazily
   WritableFile* descriptor_file_;
   log::Writer* descriptor_log_;
-  Version dummy_versions_;  // Head of circular doubly-linked list of versions.
-  Version* current_;        // == dummy_versions_.prev_
+  Version dummy_versions_;  // 充当一个固定的、永不删除的链表头，以此来简化双向循环链表的插入和删除操作。哨兵节点
+  Version* current_;  // == dummy_versions_.prev_
 
   // Per-level key at which the next compaction at that level should start.
   // Either an empty string, or a valid InternalKey.

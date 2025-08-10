@@ -1,0 +1,3988 @@
+{
+  "__type__": "VersionEdit",
+  "offset": 7,
+  "comparator": "leveldb.BytewiseComparator",
+  "log_number": null,
+  "prev_log_number": null,
+  "next_file_number": null,
+  "last_sequence": null,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": []
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 42,
+  "comparator": null,
+  "log_number": 3,
+  "prev_log_number": 0,
+  "next_file_number": 4,
+  "last_sequence": 0,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": []
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 57,
+  "comparator": null,
+  "log_number": 4,
+  "prev_log_number": 0,
+  "next_file_number": 6,
+  "last_sequence": 7224,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 76,
+      "level": 2,
+      "number": 5,
+      "file_size": 3828579,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 82,
+        "user_key": "key0000000\\x01",
+        "sequence_number": 1,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 101,
+        "user_key": "key0003743\\x01",
+        "sequence_number": 4130,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 118,
+  "comparator": null,
+  "log_number": 6,
+  "prev_log_number": 0,
+  "next_file_number": 8,
+  "last_sequence": 10777,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 137,
+      "level": 1,
+      "number": 7,
+      "file_size": 3844560,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 143,
+        "user_key": "key0000034\\x00",
+        "sequence_number": 4739,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 162,
+        "user_key": "key0007489\\x01",
+        "sequence_number": 8294,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 179,
+  "comparator": null,
+  "log_number": 8,
+  "prev_log_number": 0,
+  "next_file_number": 10,
+  "last_sequence": 14819,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 198,
+      "level": 0,
+      "number": 9,
+      "file_size": 3838846,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 204,
+        "user_key": "key0000052\\x00",
+        "sequence_number": 11534,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 223,
+        "user_key": "key0011232\\x01",
+        "sequence_number": 12427,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 240,
+  "comparator": null,
+  "log_number": 10,
+  "prev_log_number": 0,
+  "next_file_number": 12,
+  "last_sequence": 19056,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 261,
+      "level": 0,
+      "number": 11,
+      "file_size": 3842248,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 267,
+        "user_key": "key0000000\\x00",
+        "sequence_number": 14210,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 286,
+        "user_key": "key0014974\\x01",
+        "sequence_number": 16578,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 302,
+  "comparator": null,
+  "log_number": 12,
+  "prev_log_number": 0,
+  "next_file_number": 14,
+  "last_sequence": 23170,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 323,
+      "level": 0,
+      "number": 13,
+      "file_size": 3825100,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 329,
+        "user_key": "key0000068\\x00",
+        "sequence_number": 20159,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 348,
+        "user_key": "key0018705\\x01",
+        "sequence_number": 20696,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 364,
+  "comparator": null,
+  "log_number": 14,
+  "prev_log_number": 0,
+  "next_file_number": 16,
+  "last_sequence": 27298,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 385,
+      "level": 0,
+      "number": 15,
+      "file_size": 3818373,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 391,
+        "user_key": "key0000283\\x00",
+        "sequence_number": 21270,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 410,
+        "user_key": "key0022417\\x01",
+        "sequence_number": 24827,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 426,
+  "comparator": null,
+  "log_number": 17,
+  "prev_log_number": 0,
+  "next_file_number": 19,
+  "last_sequence": 31597,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 447,
+      "level": 0,
+      "number": 18,
+      "file_size": 3826765,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 453,
+        "user_key": "key0000016\\x00",
+        "sequence_number": 26019,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 472,
+        "user_key": "key0026150\\x01",
+        "sequence_number": 28955,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 488,
+  "comparator": null,
+  "log_number": 20,
+  "prev_log_number": 0,
+  "next_file_number": 22,
+  "last_sequence": 35819,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 509,
+      "level": 0,
+      "number": 21,
+      "file_size": 3825387,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 515,
+        "user_key": "key0000130\\x00",
+        "sequence_number": 31516,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 534,
+        "user_key": "key0029879\\x01",
+        "sequence_number": 33094,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 550,
+  "comparator": null,
+  "log_number": 23,
+  "prev_log_number": 0,
+  "next_file_number": 25,
+  "last_sequence": 39936,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 571,
+      "level": 0,
+      "number": 24,
+      "file_size": 3821263,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 577,
+        "user_key": "key0000077\\x00",
+        "sequence_number": 33180,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 596,
+        "user_key": "key0033603\\x01",
+        "sequence_number": 37248,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 612,
+  "comparator": null,
+  "log_number": 26,
+  "prev_log_number": 0,
+  "next_file_number": 28,
+  "last_sequence": 44122,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 633,
+      "level": 0,
+      "number": 27,
+      "file_size": 3830209,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 639,
+        "user_key": "key0000260\\x00",
+        "sequence_number": 39224,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 658,
+        "user_key": "key0037328\\x01",
+        "sequence_number": 41361,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 674,
+  "comparator": null,
+  "log_number": 26,
+  "prev_log_number": 0,
+  "next_file_number": 33,
+  "last_sequence": 44233,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 695,
+      "level": 0,
+      "key": "key0022417\\x01\\xFB`\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 737,
+      "level": 0,
+      "number": 9
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 743,
+      "level": 0,
+      "number": 11
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 749,
+      "level": 0,
+      "number": 13
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 755,
+      "level": 0,
+      "number": 15
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 761,
+      "level": 1,
+      "number": 7
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 767,
+      "level": 1,
+      "number": 16,
+      "file_size": 2113173,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 773,
+        "user_key": "key0000000\\x00",
+        "sequence_number": 14210,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 792,
+        "user_key": "key0006203\\x01",
+        "sequence_number": 6866,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 857,
+      "level": 1,
+      "number": 19,
+      "file_size": 2112447,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 863,
+        "user_key": "key0006204\\x01",
+        "sequence_number": 6867,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 882,
+        "user_key": "key0008579\\x01",
+        "sequence_number": 9501,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 947,
+      "level": 1,
+      "number": 22,
+      "file_size": 2111527,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 953,
+        "user_key": "key0008580\\x01",
+        "sequence_number": 9502,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 972,
+        "user_key": "key0010856\\x01",
+        "sequence_number": 12009,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1037,
+      "level": 1,
+      "number": 25,
+      "file_size": 2110766,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1043,
+        "user_key": "key0010857\\x01",
+        "sequence_number": 12010,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1062,
+        "user_key": "key0013073\\x01",
+        "sequence_number": 14465,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1127,
+      "level": 1,
+      "number": 28,
+      "file_size": 2111114,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1133,
+        "user_key": "key0013074\\x01",
+        "sequence_number": 14466,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1152,
+        "user_key": "key0015252\\x01",
+        "sequence_number": 16875,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1217,
+      "level": 1,
+      "number": 29,
+      "file_size": 2113111,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1223,
+        "user_key": "key0015253\\x01",
+        "sequence_number": 16876,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1242,
+        "user_key": "key0017388\\x01",
+        "sequence_number": 19232,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1307,
+      "level": 1,
+      "number": 30,
+      "file_size": 2115394,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1313,
+        "user_key": "key0017389\\x01",
+        "sequence_number": 19233,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1332,
+        "user_key": "key0019508\\x01",
+        "sequence_number": 21597,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1397,
+      "level": 1,
+      "number": 31,
+      "file_size": 2111694,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1403,
+        "user_key": "key0019509\\x01",
+        "sequence_number": 21598,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1422,
+        "user_key": "key0021574\\x01",
+        "sequence_number": 23904,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1487,
+      "level": 1,
+      "number": 32,
+      "file_size": 860341,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1492,
+        "user_key": "key0021575\\x01",
+        "sequence_number": 23905,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1511,
+        "user_key": "key0022417\\x01",
+        "sequence_number": 24827,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1131,
+  "comparator": null,
+  "log_number": 35,
+  "prev_log_number": 0,
+  "next_file_number": 37,
+  "last_sequence": 47044,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1152,
+      "level": 0,
+      "number": 36,
+      "file_size": 3806203,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1158,
+        "user_key": "key0000181\\x00",
+        "sequence_number": 44026,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1177,
+        "user_key": "key0041027\\x01",
+        "sequence_number": 45501,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1193,
+  "comparator": null,
+  "log_number": 35,
+  "prev_log_number": 0,
+  "next_file_number": 38,
+  "last_sequence": 48035,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 1214,
+      "level": 1,
+      "key": "key0006203\\x01\\xD2\\x1A\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 1256,
+      "level": 1,
+      "number": 16
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1262,
+      "level": 2,
+      "number": 5
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1268,
+      "level": 2,
+      "number": 33,
+      "file_size": 2113484,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1274,
+        "user_key": "key0000001\\x01",
+        "sequence_number": 2,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1293,
+        "user_key": "key0002945\\x01",
+        "sequence_number": 3242,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1358,
+      "level": 2,
+      "number": 34,
+      "file_size": 2111622,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1364,
+        "user_key": "key0002946\\x01",
+        "sequence_number": 3243,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1383,
+        "user_key": "key0005500\\x01",
+        "sequence_number": 6084,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1448,
+      "level": 2,
+      "number": 37,
+      "file_size": 636003,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1453,
+        "user_key": "key0005501\\x01",
+        "sequence_number": 6085,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1472,
+        "user_key": "key0006203\\x01",
+        "sequence_number": 6866,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1371,
+  "comparator": null,
+  "log_number": 35,
+  "prev_log_number": 0,
+  "next_file_number": 38,
+  "last_sequence": 48154,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 1392,
+      "level": 1,
+      "key": "key0008579\\x01\\x1D%\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 1434,
+      "level": 1,
+      "number": 19
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1440,
+      "level": 2,
+      "number": 19,
+      "file_size": 2112447,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1446,
+        "user_key": "key0006204\\x01",
+        "sequence_number": 6867,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1465,
+        "user_key": "key0008579\\x01",
+        "sequence_number": 9501,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1457,
+  "comparator": null,
+  "log_number": 35,
+  "prev_log_number": 0,
+  "next_file_number": 38,
+  "last_sequence": 48189,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 1478,
+      "level": 1,
+      "key": "key0010856\\x01\\xE9.\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 1520,
+      "level": 1,
+      "number": 22
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1526,
+      "level": 2,
+      "number": 22,
+      "file_size": 2111527,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1532,
+        "user_key": "key0008580\\x01",
+        "sequence_number": 9502,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1551,
+        "user_key": "key0010856\\x01",
+        "sequence_number": 12009,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1543,
+  "comparator": null,
+  "log_number": 40,
+  "prev_log_number": 0,
+  "next_file_number": 42,
+  "last_sequence": 52119,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1564,
+      "level": 0,
+      "number": 41,
+      "file_size": 3820876,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1570,
+        "user_key": "key0000026\\x00",
+        "sequence_number": 45575,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1589,
+        "user_key": "key0044748\\x01",
+        "sequence_number": 49681,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1605,
+  "comparator": null,
+  "log_number": 43,
+  "prev_log_number": 0,
+  "next_file_number": 45,
+  "last_sequence": 56349,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1626,
+      "level": 0,
+      "number": 44,
+      "file_size": 3835086,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1632,
+        "user_key": "key0000308\\x00",
+        "sequence_number": 50370,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1651,
+        "user_key": "key0048480\\x01",
+        "sequence_number": 53863,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1667,
+  "comparator": null,
+  "log_number": 46,
+  "prev_log_number": 0,
+  "next_file_number": 48,
+  "last_sequence": 60530,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1688,
+      "level": 0,
+      "number": 47,
+      "file_size": 3829341,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1694,
+        "user_key": "key0000330\\x00",
+        "sequence_number": 56172,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1713,
+        "user_key": "key0052212\\x01",
+        "sequence_number": 58018,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 1729,
+  "comparator": null,
+  "log_number": 46,
+  "prev_log_number": 0,
+  "next_file_number": 58,
+  "last_sequence": 60742,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 1750,
+      "level": 0,
+      "key": "key0041027\\x01\\xBD\\xB1\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 1792,
+      "level": 0,
+      "number": 18
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1798,
+      "level": 0,
+      "number": 21
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1804,
+      "level": 0,
+      "number": 24
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1810,
+      "level": 0,
+      "number": 27
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1816,
+      "level": 0,
+      "number": 36
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1822,
+      "level": 1,
+      "number": 25
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1828,
+      "level": 1,
+      "number": 28
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1834,
+      "level": 1,
+      "number": 29
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1840,
+      "level": 1,
+      "number": 30
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1846,
+      "level": 1,
+      "number": 31
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 1852,
+      "level": 1,
+      "number": 32
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 1858,
+      "level": 1,
+      "number": 38,
+      "file_size": 2111281,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1864,
+        "user_key": "key0000016\\x00",
+        "sequence_number": 26019,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1883,
+        "user_key": "key0013228\\x01",
+        "sequence_number": 14637,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 1948,
+      "level": 1,
+      "number": 39,
+      "file_size": 2114843,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 1954,
+        "user_key": "key0013229\\x01",
+        "sequence_number": 14638,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 1973,
+        "user_key": "key0015571\\x01",
+        "sequence_number": 17226,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2038,
+      "level": 1,
+      "number": 42,
+      "file_size": 2111142,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2044,
+        "user_key": "key0015572\\x01",
+        "sequence_number": 17227,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2063,
+        "user_key": "key0017869\\x01",
+        "sequence_number": 19772,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2128,
+      "level": 1,
+      "number": 45,
+      "file_size": 2113799,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2134,
+        "user_key": "key0017870\\x01",
+        "sequence_number": 19773,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2153,
+        "user_key": "key0020126\\x01",
+        "sequence_number": 22279,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2218,
+      "level": 1,
+      "number": 48,
+      "file_size": 2112323,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2224,
+        "user_key": "key0020127\\x01",
+        "sequence_number": 22280,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2243,
+        "user_key": "key0022360\\x01",
+        "sequence_number": 24766,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2308,
+      "level": 1,
+      "number": 49,
+      "file_size": 2111048,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2314,
+        "user_key": "key0022361\\x01",
+        "sequence_number": 24767,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2333,
+        "user_key": "key0024568\\x01",
+        "sequence_number": 27199,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2398,
+      "level": 1,
+      "number": 50,
+      "file_size": 2114402,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2404,
+        "user_key": "key0024569\\x01",
+        "sequence_number": 27200,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2423,
+        "user_key": "key0026757\\x01",
+        "sequence_number": 29635,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2488,
+      "level": 1,
+      "number": 51,
+      "file_size": 2114560,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2494,
+        "user_key": "key0026758\\x01",
+        "sequence_number": 29637,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2513,
+        "user_key": "key0028932\\x01",
+        "sequence_number": 32044,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2578,
+      "level": 1,
+      "number": 52,
+      "file_size": 2114211,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2584,
+        "user_key": "key0028933\\x01",
+        "sequence_number": 32045,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2603,
+        "user_key": "key0031085\\x01",
+        "sequence_number": 34460,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2668,
+      "level": 1,
+      "number": 53,
+      "file_size": 2111276,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2674,
+        "user_key": "key0031088\\x01",
+        "sequence_number": 34464,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2693,
+        "user_key": "key0033196\\x01",
+        "sequence_number": 36800,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2758,
+      "level": 1,
+      "number": 54,
+      "file_size": 2111721,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2764,
+        "user_key": "key0033197\\x01",
+        "sequence_number": 36801,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2783,
+        "user_key": "key0035292\\x01",
+        "sequence_number": 39125,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2848,
+      "level": 1,
+      "number": 55,
+      "file_size": 2113589,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2854,
+        "user_key": "key0035293\\x01",
+        "sequence_number": 39126,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2873,
+        "user_key": "key0037382\\x01",
+        "sequence_number": 41425,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2938,
+      "level": 1,
+      "number": 56,
+      "file_size": 2111621,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2944,
+        "user_key": "key0037383\\x01",
+        "sequence_number": 41426,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2963,
+        "user_key": "key0039461\\x01",
+        "sequence_number": 43755,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 3028,
+      "level": 1,
+      "number": 57,
+      "file_size": 1604115,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3033,
+        "user_key": "key0039462\\x01",
+        "sequence_number": 43758,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3052,
+        "user_key": "key0041027\\x01",
+        "sequence_number": 45501,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 2429,
+  "comparator": null,
+  "log_number": 60,
+  "prev_log_number": 0,
+  "next_file_number": 62,
+  "last_sequence": 63463,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 2450,
+      "level": 0,
+      "number": 61,
+      "file_size": 3823556,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2456,
+        "user_key": "key0000780\\x00",
+        "sequence_number": 58710,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2475,
+        "user_key": "key0055941\\x01",
+        "sequence_number": 62144,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 2491,
+  "comparator": null,
+  "log_number": 65,
+  "prev_log_number": 0,
+  "next_file_number": 67,
+  "last_sequence": 68716,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 2512,
+      "level": 0,
+      "number": 66,
+      "file_size": 3848270,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2518,
+        "user_key": "key0000329\\x00",
+        "sequence_number": 62725,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2537,
+        "user_key": "key0059690\\x01",
+        "sequence_number": 66282,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 2553,
+  "comparator": null,
+  "log_number": 65,
+  "prev_log_number": 0,
+  "next_file_number": 67,
+  "last_sequence": 70304,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 2574,
+      "level": 1,
+      "key": "key0013228\\x01-9\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 2616,
+      "level": 1,
+      "number": 38
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 2622,
+      "level": 2,
+      "number": 19
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 2628,
+      "level": 2,
+      "number": 22
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 2634,
+      "level": 2,
+      "number": 33
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 2640,
+      "level": 2,
+      "number": 34
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 2646,
+      "level": 2,
+      "number": 37
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 2652,
+      "level": 2,
+      "number": 58,
+      "file_size": 2113810,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2658,
+        "user_key": "key0000001\\x01",
+        "sequence_number": 2,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2677,
+        "user_key": "key0003172\\x01",
+        "sequence_number": 3491,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2742,
+      "level": 2,
+      "number": 59,
+      "file_size": 2111391,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2748,
+        "user_key": "key0003174\\x01",
+        "sequence_number": 3493,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2767,
+        "user_key": "key0005879\\x01",
+        "sequence_number": 6509,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2832,
+      "level": 2,
+      "number": 62,
+      "file_size": 2114235,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2838,
+        "user_key": "key0005880\\x01",
+        "sequence_number": 6510,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2857,
+        "user_key": "key0008453\\x01",
+        "sequence_number": 9357,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 2922,
+      "level": 2,
+      "number": 63,
+      "file_size": 2114769,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2928,
+        "user_key": "key0008454\\x01",
+        "sequence_number": 9358,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2947,
+        "user_key": "key0010909\\x01",
+        "sequence_number": 12068,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 3012,
+      "level": 2,
+      "number": 64,
+      "file_size": 2054906,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3017,
+        "user_key": "key0010910\\x01",
+        "sequence_number": 12070,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3036,
+        "user_key": "key0013228\\x01",
+        "sequence_number": 14637,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 2833,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73114,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 2854,
+      "level": 0,
+      "number": 68,
+      "file_size": 3836524,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2860,
+        "user_key": "key0000005\\x00",
+        "sequence_number": 70141,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2879,
+        "user_key": "key0063430\\x01",
+        "sequence_number": 70452,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 2895,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73262,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 2916,
+      "level": 1,
+      "key": "key0015571\\x01JC\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 2958,
+      "level": 1,
+      "number": 39
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 2964,
+      "level": 2,
+      "number": 39,
+      "file_size": 2114843,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 2970,
+        "user_key": "key0013229\\x01",
+        "sequence_number": 14638,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 2989,
+        "user_key": "key0015571\\x01",
+        "sequence_number": 17226,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 2981,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73298,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 3002,
+      "level": 1,
+      "key": "key0017869\\x01<M\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 3044,
+      "level": 1,
+      "number": 42
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3050,
+      "level": 2,
+      "number": 42,
+      "file_size": 2111142,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3056,
+        "user_key": "key0015572\\x01",
+        "sequence_number": 17227,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3075,
+        "user_key": "key0017869\\x01",
+        "sequence_number": 19772,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3067,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73328,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 3088,
+      "level": 1,
+      "key": "key0020126\\x01\\x07W\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 3130,
+      "level": 1,
+      "number": 45
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3136,
+      "level": 2,
+      "number": 45,
+      "file_size": 2113799,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3142,
+        "user_key": "key0017870\\x01",
+        "sequence_number": 19773,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3161,
+        "user_key": "key0020126\\x01",
+        "sequence_number": 22279,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3153,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73356,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 3174,
+      "level": 1,
+      "key": "key0022360\\x01\\xBE`\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 3216,
+      "level": 1,
+      "number": 48
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3222,
+      "level": 2,
+      "number": 48,
+      "file_size": 2112323,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3228,
+        "user_key": "key0020127\\x01",
+        "sequence_number": 22280,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3247,
+        "user_key": "key0022360\\x01",
+        "sequence_number": 24766,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3239,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73375,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 3260,
+      "level": 1,
+      "key": "key0024568\\x01?j\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 3302,
+      "level": 1,
+      "number": 49
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3308,
+      "level": 2,
+      "number": 49,
+      "file_size": 2111048,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3314,
+        "user_key": "key0022361\\x01",
+        "sequence_number": 24767,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3333,
+        "user_key": "key0024568\\x01",
+        "sequence_number": 27199,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3325,
+  "comparator": null,
+  "log_number": 67,
+  "prev_log_number": 0,
+  "next_file_number": 69,
+  "last_sequence": 73402,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 3346,
+      "level": 1,
+      "key": "key0026757\\x01\\xC3s\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 3388,
+      "level": 1,
+      "number": 50
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3394,
+      "level": 2,
+      "number": 50,
+      "file_size": 2114402,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3400,
+        "user_key": "key0024569\\x01",
+        "sequence_number": 27200,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3419,
+        "user_key": "key0026757\\x01",
+        "sequence_number": 29635,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3411,
+  "comparator": null,
+  "log_number": 71,
+  "prev_log_number": 0,
+  "next_file_number": 73,
+  "last_sequence": 77659,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3432,
+      "level": 0,
+      "number": 72,
+      "file_size": 3837453,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3438,
+        "user_key": "key0000064\\x00",
+        "sequence_number": 74320,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3457,
+        "user_key": "key0067174\\x01",
+        "sequence_number": 74605,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3473,
+  "comparator": null,
+  "log_number": 74,
+  "prev_log_number": 0,
+  "next_file_number": 76,
+  "last_sequence": 81245,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3494,
+      "level": 0,
+      "number": 75,
+      "file_size": 3823700,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3500,
+        "user_key": "key0000017\\x00",
+        "sequence_number": 75837,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3519,
+        "user_key": "key0070894\\x01",
+        "sequence_number": 78716,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 3535,
+  "comparator": null,
+  "log_number": 74,
+  "prev_log_number": 0,
+  "next_file_number": 91,
+  "last_sequence": 81534,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 3556,
+      "level": 0,
+      "key": "key0063430\\x014\\x13\\x01\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 3598,
+      "level": 0,
+      "number": 41
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3604,
+      "level": 0,
+      "number": 44
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3610,
+      "level": 0,
+      "number": 47
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3616,
+      "level": 0,
+      "number": 61
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3622,
+      "level": 0,
+      "number": 66
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3628,
+      "level": 0,
+      "number": 68
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3634,
+      "level": 1,
+      "number": 51
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3640,
+      "level": 1,
+      "number": 52
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3646,
+      "level": 1,
+      "number": 53
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3652,
+      "level": 1,
+      "number": 54
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3658,
+      "level": 1,
+      "number": 55
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3664,
+      "level": 1,
+      "number": 56
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 3670,
+      "level": 1,
+      "number": 57
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 3676,
+      "level": 1,
+      "number": 69,
+      "file_size": 15415,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3680,
+        "user_key": "key0000005\\x00",
+        "sequence_number": 70141,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3699,
+        "user_key": "key0024559\\x00",
+        "sequence_number": 65695,
+        "key_type": 0
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 3762,
+      "level": 1,
+      "number": 70,
+      "file_size": 2114997,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3768,
+        "user_key": "key0024575\\x00",
+        "sequence_number": 46586,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3787,
+        "user_key": "key0029059\\x01",
+        "sequence_number": 32186,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 3852,
+      "level": 1,
+      "number": 73,
+      "file_size": 2114780,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3858,
+        "user_key": "key0029060\\x01",
+        "sequence_number": 32189,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3877,
+        "user_key": "key0031321\\x01",
+        "sequence_number": 34720,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 3942,
+      "level": 1,
+      "number": 76,
+      "file_size": 2112233,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 3948,
+        "user_key": "key0031322\\x01",
+        "sequence_number": 34721,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 3967,
+        "user_key": "key0033559\\x01",
+        "sequence_number": 37200,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4032,
+      "level": 1,
+      "number": 77,
+      "file_size": 2112129,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4038,
+        "user_key": "key0033560\\x01",
+        "sequence_number": 37202,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4057,
+        "user_key": "key0035768\\x01",
+        "sequence_number": 39651,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4122,
+      "level": 1,
+      "number": 78,
+      "file_size": 2113471,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4128,
+        "user_key": "key0035769\\x01",
+        "sequence_number": 39652,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4147,
+        "user_key": "key0037977\\x01",
+        "sequence_number": 42096,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4212,
+      "level": 1,
+      "number": 79,
+      "file_size": 2114031,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4218,
+        "user_key": "key0037978\\x01",
+        "sequence_number": 42097,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4237,
+        "user_key": "key0040168\\x01",
+        "sequence_number": 44548,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4302,
+      "level": 1,
+      "number": 80,
+      "file_size": 2115159,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4308,
+        "user_key": "key0040169\\x01",
+        "sequence_number": 44549,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4327,
+        "user_key": "key0042352\\x01",
+        "sequence_number": 46994,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4392,
+      "level": 1,
+      "number": 81,
+      "file_size": 2110887,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4398,
+        "user_key": "key0042353\\x01",
+        "sequence_number": 46995,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4417,
+        "user_key": "key0044521\\x01",
+        "sequence_number": 49422,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4482,
+      "level": 1,
+      "number": 82,
+      "file_size": 2112087,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4488,
+        "user_key": "key0044522\\x01",
+        "sequence_number": 49423,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4507,
+        "user_key": "key0046661\\x01",
+        "sequence_number": 51862,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4572,
+      "level": 1,
+      "number": 83,
+      "file_size": 2112048,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4578,
+        "user_key": "key0046662\\x01",
+        "sequence_number": 51863,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4597,
+        "user_key": "key0048801\\x01",
+        "sequence_number": 54214,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4662,
+      "level": 1,
+      "number": 84,
+      "file_size": 2112671,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4668,
+        "user_key": "key0048802\\x01",
+        "sequence_number": 54215,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4687,
+        "user_key": "key0050920\\x01",
+        "sequence_number": 56573,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4752,
+      "level": 1,
+      "number": 85,
+      "file_size": 2112221,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4758,
+        "user_key": "key0050921\\x01",
+        "sequence_number": 56574,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4777,
+        "user_key": "key0053045\\x01",
+        "sequence_number": 58942,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4842,
+      "level": 1,
+      "number": 86,
+      "file_size": 2114328,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4848,
+        "user_key": "key0053046\\x01",
+        "sequence_number": 58943,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4867,
+        "user_key": "key0055159\\x01",
+        "sequence_number": 61278,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4932,
+      "level": 1,
+      "number": 87,
+      "file_size": 2113000,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4938,
+        "user_key": "key0055160\\x01",
+        "sequence_number": 61279,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4957,
+        "user_key": "key0057250\\x01",
+        "sequence_number": 63586,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 5022,
+      "level": 1,
+      "number": 88,
+      "file_size": 2112120,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5028,
+        "user_key": "key0057251\\x01",
+        "sequence_number": 63587,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5047,
+        "user_key": "key0059338\\x01",
+        "sequence_number": 65888,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 5112,
+      "level": 1,
+      "number": 89,
+      "file_size": 2115061,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5118,
+        "user_key": "key0059339\\x01",
+        "sequence_number": 65890,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5137,
+        "user_key": "key0061412\\x01",
+        "sequence_number": 68218,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 5202,
+      "level": 1,
+      "number": 90,
+      "file_size": 2064369,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5207,
+        "user_key": "key0061413\\x01",
+        "sequence_number": 68219,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5226,
+        "user_key": "key0063430\\x01",
+        "sequence_number": 70452,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4419,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84087,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 4440,
+      "level": 0,
+      "number": 94,
+      "file_size": 3825114,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4446,
+        "user_key": "key0000036\\x00",
+        "sequence_number": 79825,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4465,
+        "user_key": "key0074621\\x01",
+        "sequence_number": 82899,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4481,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84809,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 4502,
+      "level": 1,
+      "key": "key0029059\\x01\\xBA}\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 4544,
+      "level": 1,
+      "number": 70
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 4550,
+      "level": 2,
+      "number": 50
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 4556,
+      "level": 2,
+      "number": 91,
+      "file_size": 2114492,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4562,
+        "user_key": "key0024569\\x01",
+        "sequence_number": 27200,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4581,
+        "user_key": "key0026900\\x01",
+        "sequence_number": 29800,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 4646,
+      "level": 2,
+      "number": 92,
+      "file_size": 1984768,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4651,
+        "user_key": "key0026901\\x01",
+        "sequence_number": 29801,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4670,
+        "user_key": "key0029059\\x01",
+        "sequence_number": 32186,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4614,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84901,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 4635,
+      "level": 1,
+      "key": "key0031321\\x01\\xA0\\x87\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 4677,
+      "level": 1,
+      "number": 73
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 4683,
+      "level": 2,
+      "number": 73,
+      "file_size": 2114780,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4689,
+        "user_key": "key0029060\\x01",
+        "sequence_number": 32189,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4708,
+        "user_key": "key0031321\\x01",
+        "sequence_number": 34720,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4700,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84931,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 4721,
+      "level": 1,
+      "key": "key0033559\\x01P\\x91\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 4763,
+      "level": 1,
+      "number": 76
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 4769,
+      "level": 2,
+      "number": 76,
+      "file_size": 2112233,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4775,
+        "user_key": "key0031322\\x01",
+        "sequence_number": 34721,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4794,
+        "user_key": "key0033559\\x01",
+        "sequence_number": 37200,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4786,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84944,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 4807,
+      "level": 1,
+      "key": "key0035768\\x01\\xE3\\x9A\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 4849,
+      "level": 1,
+      "number": 77
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 4855,
+      "level": 2,
+      "number": 77,
+      "file_size": 2112129,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4861,
+        "user_key": "key0033560\\x01",
+        "sequence_number": 37202,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4880,
+        "user_key": "key0035768\\x01",
+        "sequence_number": 39651,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4872,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84958,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 4893,
+      "level": 1,
+      "key": "key0037977\\x01p\\xA4\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 4935,
+      "level": 1,
+      "number": 78
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 4941,
+      "level": 2,
+      "number": 78,
+      "file_size": 2113471,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 4947,
+        "user_key": "key0035769\\x01",
+        "sequence_number": 39652,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 4966,
+        "user_key": "key0037977\\x01",
+        "sequence_number": 42096,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 4958,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84971,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 4979,
+      "level": 1,
+      "key": "key0040168\\x01\\x04\\xAE\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5021,
+      "level": 1,
+      "number": 79
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5027,
+      "level": 2,
+      "number": 79,
+      "file_size": 2114031,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5033,
+        "user_key": "key0037978\\x01",
+        "sequence_number": 42097,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5052,
+        "user_key": "key0040168\\x01",
+        "sequence_number": 44548,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5044,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84985,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5065,
+      "level": 1,
+      "key": "key0042352\\x01\\x92\\xB7\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5107,
+      "level": 1,
+      "number": 80
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5113,
+      "level": 2,
+      "number": 80,
+      "file_size": 2115159,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5119,
+        "user_key": "key0040169\\x01",
+        "sequence_number": 44549,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5138,
+        "user_key": "key0042352\\x01",
+        "sequence_number": 46994,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5130,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 84996,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5151,
+      "level": 1,
+      "key": "key0044521\\x01\\x0E\\xC1\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5193,
+      "level": 1,
+      "number": 81
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5199,
+      "level": 2,
+      "number": 81,
+      "file_size": 2110887,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5205,
+        "user_key": "key0042353\\x01",
+        "sequence_number": 46995,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5224,
+        "user_key": "key0044521\\x01",
+        "sequence_number": 49422,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5216,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 85007,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5237,
+      "level": 1,
+      "key": "key0046661\\x01\\x96\\xCA\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5279,
+      "level": 1,
+      "number": 82
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5285,
+      "level": 2,
+      "number": 82,
+      "file_size": 2112087,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5291,
+        "user_key": "key0044522\\x01",
+        "sequence_number": 49423,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5310,
+        "user_key": "key0046661\\x01",
+        "sequence_number": 51862,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5302,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 85023,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5323,
+      "level": 1,
+      "key": "key0048801\\x01\\xC6\\xD3\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5365,
+      "level": 1,
+      "number": 83
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5371,
+      "level": 2,
+      "number": 83,
+      "file_size": 2112048,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5377,
+        "user_key": "key0046662\\x01",
+        "sequence_number": 51863,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5396,
+        "user_key": "key0048801\\x01",
+        "sequence_number": 54214,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5388,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 85033,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5409,
+      "level": 1,
+      "key": "key0050920\\x01\\xFD\\xDC\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5451,
+      "level": 1,
+      "number": 84
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5457,
+      "level": 2,
+      "number": 84,
+      "file_size": 2112671,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5463,
+        "user_key": "key0048802\\x01",
+        "sequence_number": 54215,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5482,
+        "user_key": "key0050920\\x01",
+        "sequence_number": 56573,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5474,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 85043,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5495,
+      "level": 1,
+      "key": "key0053045\\x01>\\xE6\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5537,
+      "level": 1,
+      "number": 85
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5543,
+      "level": 2,
+      "number": 85,
+      "file_size": 2112221,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5549,
+        "user_key": "key0050921\\x01",
+        "sequence_number": 56574,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5568,
+        "user_key": "key0053045\\x01",
+        "sequence_number": 58942,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5560,
+  "comparator": null,
+  "log_number": 93,
+  "prev_log_number": 0,
+  "next_file_number": 95,
+  "last_sequence": 85054,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5581,
+      "level": 1,
+      "key": "key0055159\\x01^\\xEF\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 5623,
+      "level": 1,
+      "number": 86
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5629,
+      "level": 2,
+      "number": 86,
+      "file_size": 2114328,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5635,
+        "user_key": "key0053046\\x01",
+        "sequence_number": 58943,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5654,
+        "user_key": "key0055159\\x01",
+        "sequence_number": 61278,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5646,
+  "comparator": null,
+  "log_number": 95,
+  "prev_log_number": 0,
+  "next_file_number": 97,
+  "last_sequence": 89502,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5667,
+      "level": 0,
+      "number": 96,
+      "file_size": 3825725,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5673,
+        "user_key": "key0000084\\x00",
+        "sequence_number": 84007,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5692,
+        "user_key": "key0078351\\x01",
+        "sequence_number": 87024,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5708,
+  "comparator": null,
+  "log_number": 100,
+  "prev_log_number": 0,
+  "next_file_number": 102,
+  "last_sequence": 94050,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5729,
+      "level": 0,
+      "number": 101,
+      "file_size": 3820589,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5735,
+        "user_key": "key0000317\\x00",
+        "sequence_number": 89160,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5754,
+        "user_key": "key0082086\\x01",
+        "sequence_number": 91187,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5770,
+  "comparator": null,
+  "log_number": 103,
+  "prev_log_number": 0,
+  "next_file_number": 105,
+  "last_sequence": 98259,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5791,
+      "level": 0,
+      "number": 104,
+      "file_size": 3833749,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5797,
+        "user_key": "key0000464\\x00",
+        "sequence_number": 94172,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5816,
+        "user_key": "key0085828\\x01",
+        "sequence_number": 95363,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5832,
+  "comparator": null,
+  "log_number": 106,
+  "prev_log_number": 0,
+  "next_file_number": 108,
+  "last_sequence": 102446,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5853,
+      "level": 0,
+      "number": 107,
+      "file_size": 3822925,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5859,
+        "user_key": "key0000236\\x00",
+        "sequence_number": 98666,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5878,
+        "user_key": "key0089558\\x01",
+        "sequence_number": 99474,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5894,
+  "comparator": null,
+  "log_number": 109,
+  "prev_log_number": 0,
+  "next_file_number": 111,
+  "last_sequence": 106672,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 5915,
+      "level": 0,
+      "number": 110,
+      "file_size": 3843838,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 5921,
+        "user_key": "key0000213\\x00",
+        "sequence_number": 101040,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 5940,
+        "user_key": "key0093312\\x01",
+        "sequence_number": 103701,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 5956,
+  "comparator": null,
+  "log_number": 109,
+  "prev_log_number": 0,
+  "next_file_number": 119,
+  "last_sequence": 106821,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 5977,
+      "level": 0,
+      "key": "key0078351\\x01\\xF0S\\x01\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 6019,
+      "level": 0,
+      "number": 72
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6025,
+      "level": 0,
+      "number": 75
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6031,
+      "level": 0,
+      "number": 94
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6037,
+      "level": 0,
+      "number": 96
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6043,
+      "level": 1,
+      "number": 69
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6049,
+      "level": 1,
+      "number": 87
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6055,
+      "level": 1,
+      "number": 88
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6061,
+      "level": 1,
+      "number": 89
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6067,
+      "level": 1,
+      "number": 90
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 6073,
+      "level": 1,
+      "number": 97,
+      "file_size": 21961,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6078,
+        "user_key": "key0000005\\x00",
+        "sequence_number": 70141,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6097,
+        "user_key": "key0024566\\x00",
+        "sequence_number": 80032,
+        "key_type": 0
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6161,
+      "level": 1,
+      "number": 98,
+      "file_size": 7361,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6165,
+        "user_key": "key0024612\\x00",
+        "sequence_number": 82771,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6184,
+        "user_key": "key0046624\\x00",
+        "sequence_number": 84416,
+        "key_type": 0
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6247,
+      "level": 1,
+      "number": 99,
+      "file_size": 2113401,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6253,
+        "user_key": "key0046668\\x00",
+        "sequence_number": 85906,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6272,
+        "user_key": "key0057307\\x01",
+        "sequence_number": 63645,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6337,
+      "level": 1,
+      "number": 102,
+      "file_size": 2115455,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6343,
+        "user_key": "key0057308\\x01",
+        "sequence_number": 63646,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6362,
+        "user_key": "key0059446\\x01",
+        "sequence_number": 66008,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6427,
+      "level": 1,
+      "number": 105,
+      "file_size": 2115090,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6433,
+        "user_key": "key0059447\\x01",
+        "sequence_number": 66009,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6452,
+        "user_key": "key0061568\\x01",
+        "sequence_number": 68383,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6517,
+      "level": 1,
+      "number": 108,
+      "file_size": 2112768,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6523,
+        "user_key": "key0061569\\x01",
+        "sequence_number": 68384,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6542,
+        "user_key": "key0063693\\x01",
+        "sequence_number": 70748,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6607,
+      "level": 1,
+      "number": 111,
+      "file_size": 2112333,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6613,
+        "user_key": "key0063694\\x01",
+        "sequence_number": 70749,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6632,
+        "user_key": "key0065815\\x01",
+        "sequence_number": 73100,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6697,
+      "level": 1,
+      "number": 112,
+      "file_size": 2114751,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6703,
+        "user_key": "key0065816\\x01",
+        "sequence_number": 73101,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6722,
+        "user_key": "key0067935\\x01",
+        "sequence_number": 75440,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6787,
+      "level": 1,
+      "number": 113,
+      "file_size": 2111660,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6793,
+        "user_key": "key0067936\\x01",
+        "sequence_number": 75441,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6812,
+        "user_key": "key0070019\\x01",
+        "sequence_number": 77750,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6877,
+      "level": 1,
+      "number": 114,
+      "file_size": 2115426,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6883,
+        "user_key": "key0070020\\x01",
+        "sequence_number": 77751,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6902,
+        "user_key": "key0072122\\x01",
+        "sequence_number": 80097,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6967,
+      "level": 1,
+      "number": 115,
+      "file_size": 2115200,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6973,
+        "user_key": "key0072123\\x01",
+        "sequence_number": 80098,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6992,
+        "user_key": "key0074200\\x01",
+        "sequence_number": 82422,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 7057,
+      "level": 1,
+      "number": 116,
+      "file_size": 2111366,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7063,
+        "user_key": "key0074201\\x01",
+        "sequence_number": 82423,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7082,
+        "user_key": "key0076271\\x01",
+        "sequence_number": 84716,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 7147,
+      "level": 1,
+      "number": 117,
+      "file_size": 2113447,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7153,
+        "user_key": "key0076272\\x01",
+        "sequence_number": 84717,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7172,
+        "user_key": "key0078341\\x01",
+        "sequence_number": 87013,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 7237,
+      "level": 1,
+      "number": 118,
+      "file_size": 11152,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7241,
+        "user_key": "key0078342\\x01",
+        "sequence_number": 87014,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7260,
+        "user_key": "key0078351\\x01",
+        "sequence_number": 87024,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 6646,
+  "comparator": null,
+  "log_number": 120,
+  "prev_log_number": 0,
+  "next_file_number": 122,
+  "last_sequence": 109091,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 6667,
+      "level": 0,
+      "number": 121,
+      "file_size": 3837898,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6673,
+        "user_key": "key0001494\\x00",
+        "sequence_number": 107336,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6692,
+        "user_key": "key0097060\\x01",
+        "sequence_number": 107875,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 6708,
+  "comparator": null,
+  "log_number": 125,
+  "prev_log_number": 0,
+  "next_file_number": 127,
+  "last_sequence": 114720,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 6729,
+      "level": 0,
+      "number": 126,
+      "file_size": 3833177,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6735,
+        "user_key": "key0000806\\x00",
+        "sequence_number": 107970,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6754,
+        "user_key": "key0100803\\x01",
+        "sequence_number": 112024,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 6770,
+  "comparator": null,
+  "log_number": 125,
+  "prev_log_number": 0,
+  "next_file_number": 129,
+  "last_sequence": 116207,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 6793,
+      "level": 1,
+      "key": "key0057307\\x01\\x9D\\xF8\\x00\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 6835,
+      "level": 1,
+      "number": 99
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6841,
+      "level": 2,
+      "number": 83
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6847,
+      "level": 2,
+      "number": 84
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6853,
+      "level": 2,
+      "number": 85
+    },
+    {
+      "__type__": "DeletedFile",
+      "offset": 6859,
+      "level": 2,
+      "number": 86
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 6865,
+      "level": 2,
+      "number": 119,
+      "file_size": 2113617,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6871,
+        "user_key": "key0046662\\x01",
+        "sequence_number": 51863,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6890,
+        "user_key": "key0048884\\x01",
+        "sequence_number": 54306,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 6955,
+      "level": 2,
+      "number": 122,
+      "file_size": 2111156,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 6961,
+        "user_key": "key0048885\\x01",
+        "sequence_number": 54307,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 6980,
+        "user_key": "key0051078\\x01",
+        "sequence_number": 56750,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 7045,
+      "level": 2,
+      "number": 123,
+      "file_size": 2114653,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7051,
+        "user_key": "key0051079\\x01",
+        "sequence_number": 56751,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7070,
+        "user_key": "key0053245\\x01",
+        "sequence_number": 59167,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 7135,
+      "level": 2,
+      "number": 124,
+      "file_size": 2113525,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7141,
+        "user_key": "key0053246\\x01",
+        "sequence_number": 59168,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7160,
+        "user_key": "key0055409\\x01",
+        "sequence_number": 61554,
+        "key_type": 1
+      }
+    },
+    {
+      "__type__": "NewFile",
+      "offset": 7225,
+      "level": 2,
+      "number": 127,
+      "file_size": 1866174,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7230,
+        "user_key": "key0055411\\x01",
+        "sequence_number": 61556,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7249,
+        "user_key": "key0057307\\x01",
+        "sequence_number": 63645,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 7048,
+  "comparator": null,
+  "log_number": 128,
+  "prev_log_number": 0,
+  "next_file_number": 130,
+  "last_sequence": 118964,
+  "compact_pointers": [],
+  "deleted_files": [],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 7073,
+      "level": 0,
+      "number": 129,
+      "file_size": 3835012,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7080,
+        "user_key": "key0000601\\x00",
+        "sequence_number": 112936,
+        "key_type": 0
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7099,
+        "user_key": "key0104544\\x01",
+        "sequence_number": 116204,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 7113,
+  "comparator": null,
+  "log_number": 128,
+  "prev_log_number": 0,
+  "next_file_number": 130,
+  "last_sequence": 119119,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 7138,
+      "level": 1,
+      "key": "key0059446\\x01\\xD8\\x01\\x01\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 7180,
+      "level": 1,
+      "number": 102
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 7186,
+      "level": 2,
+      "number": 102,
+      "file_size": 2115455,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7192,
+        "user_key": "key0057308\\x01",
+        "sequence_number": 63646,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7211,
+        "user_key": "key0059446\\x01",
+        "sequence_number": 66008,
+        "key_type": 1
+      }
+    }
+  ]
+}
+{
+  "__type__": "VersionEdit",
+  "offset": 7201,
+  "comparator": null,
+  "log_number": 128,
+  "prev_log_number": 0,
+  "next_file_number": 130,
+  "last_sequence": 119152,
+  "compact_pointers": [
+    {
+      "__type__": "CompactPointer",
+      "offset": 7226,
+      "level": 1,
+      "key": "key0061568\\x01\\x1F\\x0B\\x01\\x00\\x00\\x00\\x00"
+    }
+  ],
+  "deleted_files": [
+    {
+      "__type__": "DeletedFile",
+      "offset": 7268,
+      "level": 1,
+      "number": 105
+    }
+  ],
+  "new_files": [
+    {
+      "__type__": "NewFile",
+      "offset": 7274,
+      "level": 2,
+      "number": 105,
+      "file_size": 2115090,
+      "smallest": {
+        "__type__": "InternalKey",
+        "offset": 7280,
+        "user_key": "key0059447\\x01",
+        "sequence_number": 66009,
+        "key_type": 1
+      },
+      "largest": {
+        "__type__": "InternalKey",
+        "offset": 7299,
+        "user_key": "key0061568\\x01",
+        "sequence_number": 68383,
+        "key_type": 1
+      }
+    }
+  ]
+}

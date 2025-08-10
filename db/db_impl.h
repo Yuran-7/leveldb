@@ -181,7 +181,7 @@ class DBImpl : public DB {
   std::atomic<bool> has_imm_;         // So bg thread can detect non-null imm_
   WritableFile* logfile_;   // 指向当前打开的、可写入的日志文件的文件句柄
   uint64_t logfile_number_ GUARDED_BY(mutex_);  // 存储当前正在使用的日志文件的编号，例如 000005.log 中的 5
-  log::Writer* log_;    // 负责将日志记录序列化成特定格式，并写入到日志文件中
+  log::Writer* log_;    // "db/log_writer.h"，WAL写入器
   uint32_t seed_ GUARDED_BY(mutex_);  // For sampling.
 
   // Queue of writers.
