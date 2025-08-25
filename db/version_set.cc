@@ -1275,7 +1275,7 @@ Compaction* VersionSet::PickCompaction() {
       if (compact_pointer_[level].empty() ||
           icmp_.Compare(f->largest.Encode(), compact_pointer_[level]) > 0) {
         c->inputs_[0].push_back(f);
-        break;
+        break;  // 装入一个就break，说明是有一个SST进入c->inputs_[0]
       }
     }
     if (c->inputs_[0].empty()) {
