@@ -14,13 +14,20 @@
 
 namespace leveldb {
 
+/*
+只用在内存刷盘时生成新SST，合并生成的新文件不使用这个函数
+WriteLevel0Table(MemTable* mem, ...) {
+  Iterator* iter = mem->NewIterator();  // MemTableIterator
+  BuildTable(dbname_, env_, options_, table_cache_, iter, &meta);
+}
+*/
 Status BuildTable(const std::string& dbname, Env* env, const Options& options,
                   TableCache* table_cache, Iterator* iter, FileMetaData* meta) {
   Status s;
   meta->file_size = 0;
-  iter->SeekToFirst();
+  iter->SeekToFirst();  // 定位到的是 MemTable 中的第一个键值对
 
-  std::string fname = TableFileName(dbname, meta->number);
+  std::string fname = TableFileName(dbname, meta->number);  // testdb2/000007.sst
   if (iter->Valid()) {
     WritableFile* file;
     s = env->NewWritableFile(fname, &file);

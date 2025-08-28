@@ -43,8 +43,9 @@ static const char* EncodeKey(std::string* scratch, const Slice& target) {
   return scratch->data();
 }
 
-class MemTableIterator : public Iterator {
+class MemTableIterator : public Iterator {  // 定义在include/leveldb/iterator.h，抽象类
  public:
+  // explicit Iterator(const SkipList* list);所以iter_的构造函数就是传入一个跳表对象
   explicit MemTableIterator(MemTable::Table* table) : iter_(table) {}
 
   MemTableIterator(const MemTableIterator&) = delete;
@@ -67,7 +68,7 @@ class MemTableIterator : public Iterator {
   Status status() const override { return Status::OK(); }
 
  private:
-  MemTable::Table::Iterator iter_;
+  MemTable::Table::Iterator iter_;  // MemTable是类，Table是跳表（内部类），Iterator是跳表的内部类
   std::string tmp_;  // For passing to EncodeKey
 };
 

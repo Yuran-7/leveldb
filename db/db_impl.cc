@@ -975,7 +975,7 @@ Status DBImpl::DoCompactionWork(CompactionState* compact) {
     compact->smallest_snapshot = snapshots_.oldest()->sequence_number();  // 活跃快照列表的第一个的序列号（uint64_t）
   }
   // 创建一个合并迭代器 (MergingIterator)，用于按顺序遍历所有输入SSTable中的键值对
-  // 内部为每个SSTable创建一个子迭代器（每个SST一个指针），外部只暴露一个统一的迭代器接口 input
+  // 内部为每个SSTable创建一个子迭代器（或者一层一个迭代器），外部只暴露一个统一的迭代器接口 input
   Iterator* input = versions_->MakeInputIterator(compact->compaction);
 
   // Release mutex while we're actually doing the compaction work
@@ -1164,7 +1164,7 @@ Iterator* DBImpl::NewInternalIterator(const ReadOptions& options,
     list.push_back(imm_->NewIterator());    // MemTableIterator
     imm_->Ref();
   }
-  versions_->current()->AddIterators(options, &list);   // 各级SSTable，level 0是Iter，其他层TwoLevelIterator
+  versions_->current()->AddIterators(options, &list);   // level 0每个SST一个TwoLevelIterator，其他层只要一个
   Iterator* internal_iter =
       NewMergingIterator(&internal_comparator_, &list[0], list.size()); // MergingIterator
   versions_->current()->Ref();

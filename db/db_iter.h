@@ -17,6 +17,8 @@ class DBImpl;
 // Return a new iterator that converts internal keys (yielded by
 // "*internal_iter") that were live at the specified "sequence" number
 // into appropriate user keys.
+// 这个头文件没有放在include下，所以肯定是对用户不可见的
+// db->NewIterator()，定义在ImplDB下的函数会调用这个函数
 Iterator* NewDBIterator(DBImpl* db, const Comparator* user_key_comparator,
                         Iterator* internal_iter, SequenceNumber sequence,
                         uint32_t seed);

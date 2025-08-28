@@ -1,32 +1,4 @@
 {
-    "C_Cpp.default.cppStandard": "c++17",
-    "C_Cpp.default.cStandard": "c17",
-    "C_Cpp.default.compilerPath": "/usr/bin/g++",
-    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
-    "C_Cpp.default.includePath": [
-        "${workspaceFolder}/**",
-        "${workspaceFolder}/include",
-        "${workspaceFolder}/db",
-        "${workspaceFolder}/port",
-        "${workspaceFolder}/util",
-        "${workspaceFolder}/table",
-        "${workspaceFolder}/helpers",
-        "/usr/include",
-        "/usr/local/include",
-        "/usr/include/c++/11",
-        "/usr/include/x86_64-linux-gnu/c++/11"
-    ],
-    "C_Cpp.default.defines": [
-        "LEVELDB_PLATFORM_POSIX=1",
-        "_GNU_SOURCE",
-        "__STDC_FORMAT_MACROS"
-    ],
-    "C_Cpp.default.browse": {
-        "path": [
-            "${workspaceFolder}/**"
-        ],
-        "limitSymbolsToIncludedHeaders": false
-    },
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.intelliSenseEngine": "default",
     "C_Cpp.autocomplete": "default",
@@ -83,7 +55,10 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp",
+        "slist": "cpp"
     },
     "cmake.configureOnOpen": false,
     "cmake.buildDirectory": "${workspaceFolder}/build"

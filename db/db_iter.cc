@@ -88,10 +88,11 @@ class DBIter : public Iterator {
   void FindPrevUserEntry();
   bool ParseKey(ParsedInternalKey* key);
 
+  // Slice包括const char* data_和size_t size_，函数的作用是把Slice变为std::string
   inline void SaveKey(const Slice& k, std::string* dst) {
     dst->assign(k.data(), k.size());
   }
-
+  // 清楚saved_value_，如果容量大于1MB，则释放内存，否则只清空内容
   inline void ClearSavedValue() {
     if (saved_value_.capacity() > 1048576) {
       std::string empty;
@@ -111,7 +112,7 @@ class DBIter : public Iterator {
   Iterator* const iter_;
   SequenceNumber const sequence_;
   Status status_;
-  std::string saved_key_;    // == current key when direction_==kReverse
+  std::string saved_key_;    // == current key when direction_==kReverse，没看懂举的例子
   std::string saved_value_;  // == current raw value when direction_==kReverse
   Direction direction_;
   bool valid_;
@@ -120,15 +121,16 @@ class DBIter : public Iterator {
 };
 
 inline bool DBIter::ParseKey(ParsedInternalKey* ikey) {
-  Slice k = iter_->key();
+  Slice k = iter_->key();   // 把k解析成ParsedInternalKey结构体，并把结果存入ikey中
 
   size_t bytes_read = k.size() + iter_->value().size();
   while (bytes_until_read_sampling_ < bytes_read) {
+    // 重新设置下次采样阈值，所谓采样就是说，假设1小时总共有100次get，最后统计出来，key1有3次，实际上可能不止三次
     bytes_until_read_sampling_ += RandomCompactionPeriod();
     db_->RecordReadSample(k);
   }
   assert(bytes_until_read_sampling_ >= bytes_read);
-  bytes_until_read_sampling_ -= bytes_read;
+  bytes_until_read_sampling_ -= bytes_read; // 使得有机会进入while
 
   if (!ParseInternalKey(k, ikey)) {
     status_ = Status::Corruption("corrupted internal key in DBIter");
@@ -159,6 +161,8 @@ void DBIter::Next() {
     // saved_key_ already contains the key to skip past.
   } else {
     // Store in saved_key_ the current key so we skip it below.
+    // 从当前内部迭代器 iter_ 的 key 中提取出“用户 key”（去掉了内部的 sequence number 和 type 信息）
+    // 然后把这个用户 key 的内容保存到 saved_key_ 这个字符串变量中
     SaveKey(ExtractUserKey(iter_->key()), &saved_key_);
 
     // iter_ is pointing to current key. We can now safely move to the next to
@@ -170,7 +174,8 @@ void DBIter::Next() {
       return;
     }
   }
-
+  // 会继续执行iter_->Next()，智能跳过不可见的条目（sequence 太新）和被删除的条目，找到下一个用户应该看到的有效数据
+  // 这样，用户看到的是一个干净的序列：key1 -> key2 -> key3...，而不需要关心内部的多版本控制和删除标记
   FindNextUserEntry(true, &saved_key_);
 }
 
@@ -224,11 +229,11 @@ void DBIter::Prev() {
       }
       if (user_comparator_->Compare(ExtractUserKey(iter_->key()), saved_key_) <
           0) {
-        break;
+        break;  // 一直调用Prev()，直到找到一个小于saved_key_的key
       }
     }
     direction_ = kReverse;
-  }
+  } // if
 
   FindPrevUserEntry();
 }

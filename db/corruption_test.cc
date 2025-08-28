@@ -190,6 +190,7 @@ class CorruptionTest : public testing::Test {
   Cache* tiny_cache_;
 };
 
+// 测试WAL日志文件损坏后的数据恢复能力
 TEST_F(CorruptionTest, Recovery) {
   Build(100);
   Check(100, 100);
@@ -201,12 +202,14 @@ TEST_F(CorruptionTest, Recovery) {
   Check(36, 36);
 }
 
+// 测试写入文件错误时的异常处理
 TEST_F(CorruptionTest, RecoverWriteError) {
   env_.writable_file_error_ = true;
   Status s = TryReopen();
   ASSERT_TRUE(!s.ok());
 }
 
+// 测试写入过程中创建新文件失败的处理
 TEST_F(CorruptionTest, NewFileErrorDuringWrite) {
   // Do enough writing to force minor compaction
   env_.writable_file_error_ = true;
@@ -224,6 +227,7 @@ TEST_F(CorruptionTest, NewFileErrorDuringWrite) {
   Reopen();
 }
 
+// 测试SSTable文件损坏时的数据访问能力
 TEST_F(CorruptionTest, TableFile) {
   Build(100);
   DBImpl* dbi = reinterpret_cast<DBImpl*>(db_);
@@ -235,6 +239,7 @@ TEST_F(CorruptionTest, TableFile) {
   Check(90, 99);
 }
 
+// 测试SSTable损坏后使用RepairDB的修复功能
 TEST_F(CorruptionTest, TableFileRepair) {
   options_.block_size = 2 * kValueSize;  // Limit scope of corruption
   options_.paranoid_checks = true;
@@ -251,6 +256,7 @@ TEST_F(CorruptionTest, TableFileRepair) {
   Check(95, 99);
 }
 
+// 测试SSTable索引数据损坏对数据访问的影响
 TEST_F(CorruptionTest, TableFileIndexData) {
   Build(10000);  // Enough to build multiple Tables
   DBImpl* dbi = reinterpret_cast<DBImpl*>(db_);
@@ -261,6 +267,7 @@ TEST_F(CorruptionTest, TableFileIndexData) {
   Check(5000, 9999);
 }
 
+// 测试MANIFEST描述符文件丢失后的恢复能力
 TEST_F(CorruptionTest, MissingDescriptor) {
   Build(1000);
   RepairDB();
@@ -268,6 +275,7 @@ TEST_F(CorruptionTest, MissingDescriptor) {
   Check(1000, 1000);
 }
 
+// 测试序列号在数据库修复后的正确恢复
 TEST_F(CorruptionTest, SequenceNumberRecovery) {
   ASSERT_LEVELDB_OK(db_->Put(WriteOptions(), "foo", "v1"));
   ASSERT_LEVELDB_OK(db_->Put(WriteOptions(), "foo", "v2"));
@@ -289,6 +297,7 @@ TEST_F(CorruptionTest, SequenceNumberRecovery) {
   ASSERT_EQ("v6", v);
 }
 
+// 测试MANIFEST文件损坏时的错误处理和修复
 TEST_F(CorruptionTest, CorruptedDescriptor) {
   ASSERT_LEVELDB_OK(db_->Put(WriteOptions(), "foo", "hello"));
   DBImpl* dbi = reinterpret_cast<DBImpl*>(db_);
@@ -306,6 +315,7 @@ TEST_F(CorruptionTest, CorruptedDescriptor) {
   ASSERT_EQ("hello", v);
 }
 
+// 测试Compaction过程中输入文件损坏的处理
 TEST_F(CorruptionTest, CompactionInputError) {
   Build(10);
   DBImpl* dbi = reinterpret_cast<DBImpl*>(db_);
@@ -321,6 +331,7 @@ TEST_F(CorruptionTest, CompactionInputError) {
   Check(10000, 10000);
 }
 
+// 测试严格检查模式下对损坏数据的处理
 TEST_F(CorruptionTest, CompactionInputErrorParanoid) {
   options_.paranoid_checks = true;
   options_.write_buffer_size = 512 << 10;
@@ -342,6 +353,7 @@ TEST_F(CorruptionTest, CompactionInputErrorParanoid) {
   ASSERT_TRUE(!s.ok()) << "write did not fail in corrupted paranoid db";
 }
 
+// 测试损坏文件不影响其他键范围的正常操作
 TEST_F(CorruptionTest, UnrelatedKeys) {
   Build(10);
   DBImpl* dbi = reinterpret_cast<DBImpl*>(db_);

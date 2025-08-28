@@ -15,7 +15,9 @@ class MergingIterator : public Iterator {
  public:
   MergingIterator(const Comparator* comparator, Iterator** children, int n)
       : comparator_(comparator),
-        children_(new IteratorWrapper[n]),
+        // children_(new IteratorWrapper[n]) 创建了一个包含 n 个 IteratorWrapper 对象的数组
+        // IteratorWrapper() : iter_(nullptr), valid_(false) {}
+        children_(new IteratorWrapper[n]), 
         n_(n),
         current_(nullptr),
         direction_(kForward) {
@@ -32,7 +34,7 @@ class MergingIterator : public Iterator {
     for (int i = 0; i < n_; i++) {
       children_[i].SeekToFirst();
     }
-    FindSmallest();
+    FindSmallest(); // 该类的私有成员函数，current_会指向拥有最小值的那个迭代器
     direction_ = kForward;
   }
 
@@ -40,7 +42,7 @@ class MergingIterator : public Iterator {
     for (int i = 0; i < n_; i++) {
       children_[i].SeekToLast();
     }
-    FindLargest();
+    FindLargest();  // 该类的私有成员函数
     direction_ = kReverse;
   }
 
@@ -48,7 +50,7 @@ class MergingIterator : public Iterator {
     for (int i = 0; i < n_; i++) {
       children_[i].Seek(target);
     }
-    FindSmallest();
+    FindSmallest(); // 如果出现相同的key，优先选更靠近内存的
     direction_ = kForward;
   }
 
@@ -63,8 +65,8 @@ class MergingIterator : public Iterator {
     if (direction_ != kForward) {
       for (int i = 0; i < n_; i++) {
         IteratorWrapper* child = &children_[i];
-        if (child != current_) {
-          child->Seek(key());
+        if (child != current_) {    // 前向遍历时：current_ 指向所有有效子迭代器中键值最小的那个
+          child->Seek(key());   // 返回当前活跃迭代器的键，return current_->key()
           if (child->Valid() &&
               comparator_->Compare(key(), child->key()) == 0) {
             child->Next();
@@ -139,8 +141,8 @@ class MergingIterator : public Iterator {
   // For now we use a simple array since we expect a very small number
   // of children in leveldb.
   const Comparator* comparator_;
-  IteratorWrapper* children_;
-  int n_;
+  IteratorWrapper* children_;   // 迭代器数组
+  int n_;   // 子迭代器的数量
   IteratorWrapper* current_;
   Direction direction_;
 };

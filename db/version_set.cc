@@ -1189,21 +1189,33 @@ Iterator* VersionSet::MakeInputIterator(Compaction* c) {
   options.verify_checksums = options_->paranoid_checks;
   options.fill_cache = false;
 
-  // Level-0 files have to be merged together.  For other levels,
-  // we will make a concatenating iterator per level.
+  // Level-0层的所有参与合并的SST（并非全部SST）都需要一个Iterator* iter
   // TODO(opt): use concatenating iterator for level-0 if there is no overlap
+  /*
+  Level-0 (通过 table_cache)
+    索引迭代器：Table 内部的 index block iterator (指向 data blocks)
+    块函数：Table::BlockReader (读取 data blocks)
+    作用域：单个 SST 文件内部的 data blocks 之间的迭代
+    在单个 SST 文件内部，第一层是 index blocks，第二层是 data blocks
+  Level-1+ (直接调用 NewTwoLevelIterator)
+    索引迭代器：LevelFileNumIterator (指向不同的 SST 文件)
+    块函数：GetFileIterator (通过 table_cache 打开整个 SST 文件)
+    作用域：多个 SST 文件之间的迭代
+    在多个 SST 文件之间，第一层是文件列表，第二层是单个文件的完整迭代器
+  */
   const int space = (c->level() == 0 ? c->inputs_[0].size() + 1 : 2);
   Iterator** list = new Iterator*[space];
   int num = 0;
   for (int which = 0; which < 2; which++) {
     if (!c->inputs_[which].empty()) {
-      if (c->level() + which == 0) {
+      if (c->level() + which == 0) {    // Level-0: 每个文件一个独立Iterator
         const std::vector<FileMetaData*>& files = c->inputs_[which];
         for (size_t i = 0; i < files.size(); i++) {
+          // VersionSet类中的TableCache
           list[num++] = table_cache_->NewIterator(options, files[i]->number,
                                                   files[i]->file_size);
         }
-      } else {
+      } else {  // Level-1+: 一个连接Iterator处理多个文件
         // Create concatenating iterator for the files from this level
         list[num++] = NewTwoLevelIterator(
             new Version::LevelFileNumIterator(icmp_, &c->inputs_[which]),

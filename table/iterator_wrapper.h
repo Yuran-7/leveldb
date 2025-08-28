@@ -24,12 +24,12 @@ class IteratorWrapper {
   // Takes ownership of "iter" and will delete it when destroyed, or
   // when Set() is invoked again.
   void Set(Iterator* iter) {
-    delete iter_;
-    iter_ = iter;
+    delete iter_;   // 删除之前的迭代器（如果有的话）
+    iter_ = iter;   // 设置新的迭代器
     if (iter_ == nullptr) {
-      valid_ = false;
+      valid_ = false;   // 如果迭代器为空，设置为无效
     } else {
-      Update();
+      Update(); // 否则更新缓存状态
     }
   }
 
