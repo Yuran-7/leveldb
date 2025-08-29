@@ -279,42 +279,46 @@ static bool NewestFirst(FileMetaData* a, FileMetaData* b) {
   return a->number > b->number;
 }
 
+// 遍历所有可能包含指定键的 SST 文件，对每个文件调用回调函数
 void Version::ForEachOverlapping(Slice user_key, Slice internal_key, void* arg,
                                  bool (*func)(void*, int, FileMetaData*)) {
   const Comparator* ucmp = vset_->icmp_.user_comparator();
 
-  // Search level-0 in order from newest to oldest.
+  // Level-0 特殊处理：文件之间可能重叠，需要检查所有文件，并按新到旧的顺序查找
   std::vector<FileMetaData*> tmp;
   tmp.reserve(files_[0].size());
   for (uint32_t i = 0; i < files_[0].size(); i++) {
     FileMetaData* f = files_[0][i];
+    // 检查用户键是否在文件的键范围内
     if (ucmp->Compare(user_key, f->smallest.user_key()) >= 0 &&
         ucmp->Compare(user_key, f->largest.user_key()) <= 0) {
       tmp.push_back(f);
     }
   }
   if (!tmp.empty()) {
+    // 按文件号降序排序（newer first），确保先查找较新的文件
     std::sort(tmp.begin(), tmp.end(), NewestFirst);
     for (uint32_t i = 0; i < tmp.size(); i++) {
-      if (!(*func)(arg, 0, tmp[i])) {
+      if (!(*func)(arg, 0, tmp[i])) {  // 如果回调返回 false，停止查找；未找到，继续从其他文件中查找，返回true
         return;
       }
     }
   }
 
-  // Search other levels.
+  // Level-1 及以上：文件之间不重叠，可以使用二分查找快速定位
   for (int level = 1; level < config::kNumLevels; level++) {
     size_t num_files = files_[level].size();
     if (num_files == 0) continue;
 
-    // Binary search to find earliest index whose largest key >= internal_key.
+    // FindFile函数用二分查找第一个最大键 >= internal_key 的文件
     uint32_t index = FindFile(vset_->icmp_, files_[level], internal_key);
     if (index < num_files) {
       FileMetaData* f = files_[level][index];
+      // 检查用户键是否在找到的文件范围内
       if (ucmp->Compare(user_key, f->smallest.user_key()) < 0) {
         // All of "f" is past any data for user_key
       } else {
-        if (!(*func)(arg, level, f)) {
+        if (!(*func)(arg, level, f)) {  // 调用回调函数处理文件
           return;
         }
       }
@@ -322,26 +326,30 @@ void Version::ForEachOverlapping(Slice user_key, Slice internal_key, void* arg,
   }
 }
 
+// 在当前 Version 的所有 SSTable 文件中查找指定的键
 Status Version::Get(const ReadOptions& options, const LookupKey& k,
                     std::string* value, GetStats* stats) {
   stats->seek_file = nullptr;
   stats->seek_file_level = -1;
 
+  // 查找状态和回调函数的封装结构
   struct State {
-    Saver saver;
-    GetStats* stats;
+    Saver saver;                    // 用于保存查找结果的结构
+    GetStats* stats;                // 统计信息收集器
     const ReadOptions* options;
-    Slice ikey;
-    FileMetaData* last_file_read;
+    Slice ikey;                     // 内部键（包含序列号）
+    FileMetaData* last_file_read;   // 上一次读取的文件，用于统计
     int last_file_read_level;
 
     VersionSet* vset;
     Status s;
     bool found;
 
+    // 对每个可能包含目标键的 SST 文件调用此函数
     static bool Match(void* arg, int level, FileMetaData* f) {
       State* state = reinterpret_cast<State*>(arg);
 
+      // 如果这是第二次文件查找，记录第一个文件用于统计（用于 compaction 触发）
       if (state->stats->seek_file == nullptr &&
           state->last_file_read != nullptr) {
         // We have had more than one seek for this read.  Charge the 1st file.
@@ -352,26 +360,27 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
       state->last_file_read = f;
       state->last_file_read_level = level;
 
+      // 在具体的 SST 文件中查找键，通过 TableCache 访问
       state->s = state->vset->table_cache_->Get(*state->options, f->number,
                                                 f->file_size, state->ikey,
                                                 &state->saver, SaveValue);
       if (!state->s.ok()) {
         state->found = true;
-        return false;
+        return false;  // 出错时停止查找
       }
       switch (state->saver.state) {
         case kNotFound:
-          return true;  // Keep searching in other files
+          return true;  // 在当前文件中未找到，继续在其他文件中查找
         case kFound:
           state->found = true;
-          return false;
+          return false; // 找到了，停止查找
         case kDeleted:
-          return false;
+          return false; // 找到删除标记，停止查找
         case kCorrupt:
           state->s =
               Status::Corruption("corrupted key for ", state->saver.user_key);
           state->found = true;
-          return false;
+          return false; // 数据损坏，停止查找
       }
 
       // Not reached. Added to avoid false compilation warnings of
@@ -380,21 +389,24 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
     }
   };
 
+  // 初始化查找状态
   State state;
   state.found = false;
-  state.stats = stats;
+  state.stats = stats;  // 函数参数
   state.last_file_read = nullptr;
   state.last_file_read_level = -1;
 
   state.options = &options;
-  state.ikey = k.internal_key();
+  state.ikey = k.internal_key();    // 函数参数，LookupKey
   state.vset = vset_;
 
+  // 初始化 Saver，用于在 SST 文件中查找时保存结果
   state.saver.state = kNotFound;
   state.saver.ucmp = vset_->icmp_.user_comparator();
-  state.saver.user_key = k.user_key();
-  state.saver.value = value;
+  state.saver.user_key = k.user_key();  // 只包含用户键的部分
+  state.saver.value = value;            // 输出参数，找到的值将写入这里
 
+  // 遍历所有可能包含该键的 SST 文件，按层级和时间顺序查找
   ForEachOverlapping(state.saver.user_key, state.ikey, &state, &State::Match);
 
   return state.found ? state.s : Status::NotFound(Slice());

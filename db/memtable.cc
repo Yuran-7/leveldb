@@ -101,9 +101,9 @@ void MemTable::Add(SequenceNumber s, ValueType type, const Slice& key,
 }
 
 bool MemTable::Get(const LookupKey& key, std::string* value, Status* s) {
-  Slice memkey = key.memtable_key();
-  Table::Iterator iter(&table_);
-  iter.Seek(memkey.data());
+  Slice memkey = key.memtable_key();    // memkey = [klength][userkey][tag]，memkey = [klength][userkey][tag]
+  Table::Iterator iter(&table_);    // 这里的Table是跳表，table_是Memtable类的Table类型的成员变量
+  iter.Seek(memkey.data()); // 调用跳表的FindGreaterOrEqual
   if (iter.Valid()) {
     // entry format is:
     //    klength  varint32
@@ -114,16 +114,17 @@ bool MemTable::Get(const LookupKey& key, std::string* value, Status* s) {
     // Check that it belongs to same user key.  We do not check the
     // sequence number since the Seek() call above should have skipped
     // all entries with overly large sequence numbers.
-    const char* entry = iter.key();
+    const char* entry = iter.key(); // return node_->key
     uint32_t key_length;
-    const char* key_ptr = GetVarint32Ptr(entry, entry + 5, &key_length);
+    // key_ptr 指向 user_key 的开始位置，key_length = user_key.size() + 8（包含8字节的tag）
+    const char* key_ptr = GetVarint32Ptr(entry, entry + 5, &key_length);    // +4：不够，某些32位值需要5字节，+6：浪费，Varint32永远不会超过5字节
     if (comparator_.comparator.user_comparator()->Compare(
-            Slice(key_ptr, key_length - 8), key.user_key()) == 0) {
+            Slice(key_ptr, key_length - 8), key.user_key()) == 0) { // 验证用户键是否匹配，FindGreaterOrEqual 返回的是 ≥ 目标的第一个节点
       // Correct user key
       const uint64_t tag = DecodeFixed64(key_ptr + key_length - 8);
       switch (static_cast<ValueType>(tag & 0xff)) {
         case kTypeValue: {
-          Slice v = GetLengthPrefixedSlice(key_ptr + key_length);
+          Slice v = GetLengthPrefixedSlice(key_ptr + key_length);   // 指针从key_ptr + key_length开始读取，并去掉长度前缀，只获取value
           value->assign(v.data(), v.size());
           return true;
         }

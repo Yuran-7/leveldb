@@ -13,6 +13,10 @@ namespace leveldb {
 
 namespace {
 
+// 这个 typedef 定义了一个名为 BlockFunction 的类型
+// 语法：typedef 返回类型 (*类型名)(参数列表);
+// 声明一个 BlockFunction 类型的变量，BlockFunction my_function = CreateBlockIterator;
+// using BlockFunction = Iterator* (*)(void*, const ReadOptions&, const Slice&);
 typedef Iterator* (*BlockFunction)(void*, const ReadOptions&, const Slice&);
 
 class TwoLevelIterator : public Iterator {
@@ -40,9 +44,9 @@ class TwoLevelIterator : public Iterator {
   Status status() const override {
     // It'd be nice if status() returned a const Status& instead of a Status
     if (!index_iter_.status().ok()) {
-      return index_iter_.status();
+      return index_iter_.status();  // 优先返回index_iter_的状态
     } else if (data_iter_.iter() != nullptr && !data_iter_.status().ok()) {
-      return data_iter_.status();
+      return data_iter_.status();   // 如果index_iter_状态正常且data_iter_状态不正常，返回data_iter_的状态
     } else {
       return status_;
     }
@@ -57,15 +61,15 @@ class TwoLevelIterator : public Iterator {
   void SetDataIterator(Iterator* data_iter);
   void InitDataBlock();
 
-  BlockFunction block_function_;
+  BlockFunction block_function_;    // 根据句柄创建数据块迭代器的函数
   void* arg_;
   const ReadOptions options_;
   Status status_;
-  IteratorWrapper index_iter_;
-  IteratorWrapper data_iter_;  // May be nullptr
+  IteratorWrapper index_iter_;  // 第一级：遍历索引块
+  IteratorWrapper data_iter_;   // 第二级：遍历当前数据块  
   // If data_iter_ is non-null, then "data_block_handle_" holds the
   // "index_value" passed to block_function_ to create the data_iter_.
-  std::string data_block_handle_;
+  std::string data_block_handle_;   // 当前数据块的句柄
 };
 
 TwoLevelIterator::TwoLevelIterator(Iterator* index_iter,
@@ -79,11 +83,13 @@ TwoLevelIterator::TwoLevelIterator(Iterator* index_iter,
 
 TwoLevelIterator::~TwoLevelIterator() = default;
 
+// Seek不使用布隆过滤器
 void TwoLevelIterator::Seek(const Slice& target) {
-  index_iter_.Seek(target);
-  InitDataBlock();
-  if (data_iter_.iter() != nullptr) data_iter_.Seek(target);
-  SkipEmptyDataBlocksForward();
+  index_iter_.Seek(target);    // 在索引中找到包含target的数据块，如果target超出所有数据块范围，index_iter_.Valid() == false
+  InitDataBlock();             // 创建该数据块的迭代器
+  if (data_iter_.iter() != nullptr) 
+    data_iter_.Seek(target);   // 在数据块内定位target
+  SkipEmptyDataBlocksForward(); // 跳到下一个索引项和数据块，或者什么都不干
 }
 
 void TwoLevelIterator::SeekToFirst() {
@@ -113,20 +119,20 @@ void TwoLevelIterator::Prev() {
 }
 
 void TwoLevelIterator::SkipEmptyDataBlocksForward() {
-  while (data_iter_.iter() == nullptr || !data_iter_.Valid()) {
+  while (data_iter_.iter() == nullptr || !data_iter_.Valid()) { // data_iter_为空或无效
     // Move to next block
     if (!index_iter_.Valid()) {
       SetDataIterator(nullptr);
       return;
     }
-    index_iter_.Next();
-    InitDataBlock();
-    if (data_iter_.iter() != nullptr) data_iter_.SeekToFirst();
+    index_iter_.Next(); // 移动到下一个索引项
+    InitDataBlock();    // 创建新的数据块迭代器
+    if (data_iter_.iter() != nullptr) data_iter_.SeekToFirst(); // 定位到新数据块的开头
   }
 }
 
 void TwoLevelIterator::SkipEmptyDataBlocksBackward() {
-  while (data_iter_.iter() == nullptr || !data_iter_.Valid()) {
+  while (data_iter_.iter() == nullptr || !data_iter_.Valid()) { // data_iter_为空或无效
     // Move to next block
     if (!index_iter_.Valid()) {
       SetDataIterator(nullptr);

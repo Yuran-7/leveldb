@@ -11,23 +11,20 @@
 namespace leveldb {
 namespace log {
 
+// 记录类型
 enum RecordType {
-  // Zero is reserved for preallocated files
-  kZeroType = 0,
-
-  kFullType = 1,
-
-  // For fragments
-  kFirstType = 2,
-  kMiddleType = 3,
-  kLastType = 4
+  kZeroType = 0,    // 保留给预分配文件
+  kFullType = 1,    // 完整记录
+  kFirstType = 2,   // 分片记录的第一部分
+  kMiddleType = 3,  // 分片记录的中间部分  
+  kLastType = 4     // 分片记录的最后部分
 };
 static const int kMaxRecordType = kLastType;
 
-static const int kBlockSize = 32768;
+static const int kBlockSize = 32768;    // 32KB 块大小
 
 // Header is checksum (4 bytes), length (2 bytes), type (1 byte).
-static const int kHeaderSize = 4 + 2 + 1;
+static const int kHeaderSize = 4 + 2 + 1;   // 7字节头部
 
 }  // namespace log
 }  // namespace leveldb

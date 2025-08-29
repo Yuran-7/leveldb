@@ -91,7 +91,7 @@ class SkipList {
     void SeekToLast();
 
    private:
-    const SkipList* list_;
+    const SkipList* list_;  // 只有指针或者引用才不会报错，如果是值的话编译就会报错
     Node* node_;
     // Intentionally copyable
   };
@@ -263,7 +263,7 @@ SkipList<Key, Comparator>::FindGreaterOrEqual(const Key& key,
   int level = GetMaxHeight() - 1;
   while (true) {
     Node* next = x->Next(level);
-    if (KeyIsAfterNode(key, next)) {
+    if (KeyIsAfterNode(key, next)) {    // key是否小于next
       // Keep searching in this list
       x = next;
     } else {

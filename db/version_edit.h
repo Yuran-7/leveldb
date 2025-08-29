@@ -16,7 +16,7 @@ namespace leveldb {
 class VersionSet;
 
 struct FileMetaData {
-  FileMetaData() : refs(0), allowed_seeks(1 << 30), file_size(0) {}
+  FileMetaData() : refs(0), allowed_seeks(1 << 30), file_size(0) {} // 这里被初始化为1<<30，但实际上是static_cast<int>((f->file_size / 16384U));
 
   int refs;
   int allowed_seeks;  // Seeks allowed until compaction

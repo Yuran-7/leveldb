@@ -40,7 +40,7 @@ class LogTest : public testing::Test {
  public:
   LogTest()
       : reading_(false),
-        writer_(new Writer(&dest_)),
+        writer_(new Writer(&dest_)),    // 这个时候dest_已经被默认构造器初始化了，因为它的声明顺序是第一个
         reader_(new Reader(&source_, &report_, true /*checksum*/,
                            0 /*initial_offset*/)) {}
 
@@ -55,7 +55,7 @@ class LogTest : public testing::Test {
   }
 
   void Write(const std::string& msg) {
-    ASSERT_TRUE(!reading_) << "Write() after starting to read";
+    ASSERT_TRUE(!reading_) << "Write() after starting to read"; // 断言失败时，会打印到控制台
     writer_->AddRecord(Slice(msg));
   }
 
@@ -233,7 +233,7 @@ class LogTest : public testing::Test {
   bool reading_;
   Writer* writer_;
   Reader* reader_;
-};
+};  // LogTest
 
 size_t LogTest::initial_offset_record_sizes_[] = {
     10000,  // Two sizable records in first block

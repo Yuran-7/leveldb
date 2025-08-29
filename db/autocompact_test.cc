@@ -9,7 +9,7 @@
 #include "util/testutil.h"
 
 /**
- * 和其他大部分_test.cc文件一样，被编译成可执行文件leveldb_tests
+ * 和其他大部分_test.cc文件一起，被编译成可执行文件leveldb_tests
  * 运行 AutoCompactTest：./leveldb_tests --gtest_filter="AutoCompactTest.*"
  * 只运行ReadAll 测试：./leveldb_tests --gtest_filter="AutoCompactTest.ReadAll"
  * 详细输出：./leveldb_tests --gtest_filter="AutoCompactTest.*" --gtest_verbose

@@ -1208,7 +1208,7 @@ Status DBImpl::Get(const ReadOptions& options, const Slice& key,
   if (imm != nullptr) imm->Ref();
   current->Ref();
 
-  bool have_stat_update = false;  // 标记是否从 SSTable 中读取了数据，从而可能需要更新文件的统计信息
+  bool have_stat_update = false;  // 标记是否从 SSTable 中读取了数据，从而可能需要更新文件的统计信息，注意从内存中查找不算哦
   Version::GetStats stats;  // 用于收集读取操作的统计信息，例如哪些文件被访问了
 
   // Unlock while reading from files and memtables
@@ -1216,7 +1216,7 @@ Status DBImpl::Get(const ReadOptions& options, const Slice& key,
     mutex_.Unlock();
     // First look in the memtable, then in the immutable memtable (if any).
     // 构建查找键 (LookupKey)，它包含了用户键 (key) 和快照序列号 (snapshot)
-    LookupKey lkey(key, snapshot);
+    LookupKey lkey(key, snapshot);  // 构建时，会带上类型，kTypeDeletion = 0x0, kTypeValue = 0x
     if (mem->Get(lkey, value, &s)) {  // 1. 首先在可变的 MemTable (mem_) 中查找
       // Done
     } else if (imm != nullptr && imm->Get(lkey, value, &s)) { // 2. 如果 MemTable 中未找到，且存在不可变的 MemTable (imm_)，则在 imm_ 中查找
@@ -1225,9 +1225,9 @@ Status DBImpl::Get(const ReadOptions& options, const Slice& key,
       s = current->Get(options, lkey, value, &stats);
       have_stat_update = true;  // 标记从 SSTable 中进行了查找，需要更新文件访问统计
     }
-    mutex_.Lock();
+    mutex_.Lock();  // 整个函数仍然在 MutexLock l(&mutex_) 的RAII管理下，函数结束时锁会自动释放，而不是出了这个作用域就解锁
   }
-  // 如果从 SSTable 中进行了查找 (have_stat_update 为 true)，并且 Version 的统计信息确实需要更新 (UpdateStats 返回 true)，
+  // 如果从 SSTable 中进行了查找 (have_stat_update 为 true)，并且 Version 的某个文件被访问次数过多 (UpdateStats 返回 true)，
   // (例如，某个文件被频繁访问，可能触发 Compaction)，则尝试调度一次 Compaction
   if (have_stat_update && current->UpdateStats(stats)) {
     MaybeScheduleCompaction();

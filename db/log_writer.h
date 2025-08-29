@@ -17,16 +17,15 @@ class WritableFile;
 
 namespace log {
 
+// WAL 日志写入器：将记录按块格式写入日志文件
 class Writer {
  public:
-  // Create a writer that will append data to "*dest".
-  // "*dest" must be initially empty.
-  // "*dest" must remain live while this Writer is in use.
+  // 创建写入器，追加数据到目标文件
+  // dest 必须初始为空，且在 Writer 使用期间保持有效
   explicit Writer(WritableFile* dest);
 
-  // Create a writer that will append data to "*dest".
-  // "*dest" must have initial length "dest_length".
-  // "*dest" must remain live while this Writer is in use.
+  // 创建写入器，追加数据到已有长度的目标文件
+  // dest 必须有初始长度 dest_length，且在 Writer 使用期间保持有效
   Writer(WritableFile* dest, uint64_t dest_length);
 
   Writer(const Writer&) = delete;
@@ -34,14 +33,17 @@ class Writer {
 
   ~Writer();
 
+  // 添加一条记录到日志文件
   Status AddRecord(const Slice& slice);
 
  private:
+  // 发射物理记录到文件（处理分片和格式化）
   Status EmitPhysicalRecord(RecordType type, const char* ptr, size_t length);
 
-  WritableFile* dest_;
-  int block_offset_;  // Current offset in block
+  WritableFile* dest_;  // 目标文件
+  int block_offset_;    // 当前块内偏移量（0-32KB）
 
+  // 预计算的记录类型 CRC32 值，减少计算开销
   // crc32c values for all supported record types.  These are
   // pre-computed to reduce the overhead of computing the crc of the
   // record type stored in the header.

@@ -223,8 +223,10 @@ Status Table::InternalGet(const ReadOptions& options, const Slice& k, void* arg,
     BlockHandle handle;
     if (filter != nullptr && handle.DecodeFrom(&handle_value).ok() &&
         !filter->KeyMayMatch(handle.offset(), k)) {
-      // Not found
+      // 布隆过滤器判断键不存在，直接返回 Not found
+      // 避免读取数据块，提高性能
     } else {
+      // 布隆过滤器判断键可能存在，继续在实际数据块中查找
       Iterator* block_iter = BlockReader(this, options, iiter->value());
       block_iter->Seek(k);
       if (block_iter->Valid()) {
