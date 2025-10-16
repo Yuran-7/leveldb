@@ -360,7 +360,8 @@ Status Version::Get(const ReadOptions& options, const LookupKey& k,
       state->last_file_read = f;
       state->last_file_read_level = level;
 
-      // 在具体的 SST 文件中查找键，通过 TableCache 访问
+      // 在具体的 SST 文件中查找键(state->ikey)，通过 TableCache 访问
+      // SaveValue: 一个回调函数。当在文件中找到匹配的键值对时，Get 方法会调用此函数，并将 &state->saver 和找到的键值对作为参数传给它，由它来处理和保存结果
       state->s = state->vset->table_cache_->Get(*state->options, f->number,
                                                 f->file_size, state->ikey,
                                                 &state->saver, SaveValue);

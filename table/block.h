@@ -29,7 +29,7 @@ class Block {
   Iterator* NewIterator(const Comparator* comparator);
 
  private:
-  class Iter;
+  class Iter; // class Iter; 不是 Block 的成员变量，而是一个私有的嵌套类（Nested Class）的前向声明（Forward Declaration）
 
   uint32_t NumRestarts() const;
 

@@ -35,8 +35,8 @@ Status BuildTable(const std::string& dbname, Env* env, const Options& options,
       return s;
     }
 
-    TableBuilder* builder = new TableBuilder(options, file);
-    meta->smallest.DecodeFrom(iter->key());
+    TableBuilder* builder = new TableBuilder(options, file);  // block_base_table_builder，核心是里面的Rep* rep_
+    meta->smallest.DecodeFrom(iter->key()); // smallest 是 InternalKey 类型，DecodeFrom 只是把 key 的内容复制到string rep_ 中
     Slice key;
     for (; iter->Valid(); iter->Next()) {
       key = iter->key();

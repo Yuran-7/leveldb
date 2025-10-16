@@ -123,7 +123,7 @@ Options SanitizeOptions(const std::string& dbname,
 // 计算表缓存（TableCache）可以使用的最大文件数，表缓存就可以理解SSTable缓存
 static int TableCacheSize(const Options& sanitized_options) {
   // Reserve ten files or so for other uses and give the rest to TableCache.
-  return sanitized_options.max_open_files - kNumNonTableCacheFiles;
+  return sanitized_options.max_open_files - kNumNonTableCacheFiles; // 1000 - 10 = 990
 }
 
 DBImpl::DBImpl(const Options& raw_options, const std::string& dbname)

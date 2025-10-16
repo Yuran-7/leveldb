@@ -36,7 +36,10 @@ Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
 ```bash
 git clone --recurse-submodules https://github.com/google/leveldb.git
 ```
-
+```bash
+git clone https://github.com/google/leveldb.git
+git submodule update --init --recursive
+```
 # Building
 
 This project supports [CMake](https://cmake.org/) out of the box.

@@ -86,10 +86,10 @@ TwoLevelIterator::~TwoLevelIterator() = default;
 // Seek不使用布隆过滤器
 void TwoLevelIterator::Seek(const Slice& target) {
   index_iter_.Seek(target);    // 在索引中找到包含target的数据块，如果target超出所有数据块范围，index_iter_.Valid() == false
-  InitDataBlock();             // 创建该数据块的迭代器
+  InitDataBlock();             // 打开该数据块，初始化 data_iter_
   if (data_iter_.iter() != nullptr) 
     data_iter_.Seek(target);   // 在数据块内定位target
-  SkipEmptyDataBlocksForward(); // 跳到下一个索引项和数据块，或者什么都不干
+  SkipEmptyDataBlocksForward(); // 如果数据块是空的，跳到下一个非空数据块
 }
 
 void TwoLevelIterator::SeekToFirst() {
