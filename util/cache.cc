@@ -34,14 +34,13 @@ namespace {
 // 当 Ref() 和 Unref() 方法检测到缓存中的元素获得或失去其唯一的外部引用时，
 // 元素会在这些列表之间移动。
 
-// LRUHandle 是一个可变长度的堆分配结构。
-// 条目保存在一个按访问时间排序的循环双向链表中。
+// LRUHandle 是一个可变长度的堆分配结构，同时通过两种方式被组织
 struct LRUHandle {
-  void* value;                               // 存储的值
+  void* value;                               // 真正的数据存储在这里
   void (*deleter)(const Slice&, void* value); // 用于删除值的函数指针
-  LRUHandle* next_hash;                      // 哈希表中下一个条目的指针（用于解决哈希冲突）
-  LRUHandle* next;                           // LRU 链表中的下一个条目
-  LRUHandle* prev;                           // LRU 链表中的上一个条目
+  LRUHandle* next_hash;                      // （哈希表）中下一个条目的指针（用于解决哈希冲突）
+  LRUHandle* next;                           // （LRU 链表）中的下一个条目
+  LRUHandle* prev;                           // （LRU 链表）中的上一个条目
   size_t charge;                             // 此条目占用的费用（例如内存大小）
   size_t key_length;                         // 键的长度
   bool in_cache;                             // 条目是否在缓存中
@@ -99,7 +98,7 @@ class HandleTable {
   // 哈希表由一个桶数组组成，每个桶是一个哈希到该桶的缓存条目的链表。
   uint32_t length_; // 桶数组的长度
   uint32_t elems_;  // 哈希表中的元素数量
-  LRUHandle** list_; // 桶数组
+  LRUHandle** list_; // 桶数组，LRUHandle相对于一个Entry
 
   // 返回一个指向槽的指针，该槽指向与 key/hash 匹配的缓存条目。
   // 如果没有这样的缓存条目，则返回一个指向相应链表中尾随槽的指针。
@@ -287,7 +286,7 @@ Cache::Handle* LRUCache::Insert(const Slice& key, uint32_t hash, void* value,
   while (usage_ > capacity_ && lru_.next != &lru_) {
     LRUHandle* old = lru_.next;
     assert(old->refs == 1);
-    bool erased = FinishErase(table_.Remove(old->key(), old->hash));
+    bool erased = FinishErase(table_.Remove(old->key(), old->hash));  // 从哈希表移除，从LRU链表移除，减少引用计数
     if (!erased) {  // 避免在编译 NDEBUG 时出现未使用变量的警告
       assert(erased);
     }

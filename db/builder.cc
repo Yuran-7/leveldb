@@ -56,7 +56,7 @@ Status BuildTable(const std::string& dbname, Env* env, const Options& options,
 
     // Finish and check for file errors
     if (s.ok()) {
-      s = file->Sync();
+      s = file->Sync(); // ← SSTable 写完后必须 Sync
     }
     if (s.ok()) {
       s = file->Close();

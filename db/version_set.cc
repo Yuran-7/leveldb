@@ -1419,8 +1419,8 @@ void VersionSet::SetupOtherInputs(Compaction* c) {
 
   // 1. 找到压缩文件(c->inputs_[0])中的最大 user_key
   // 2. 查找是否有其他文件(current_->files_[level])的最小 user_key 与之相同，若有则将其加入到压缩文件中，相当于再拓展SST的数量
-  AddBoundaryInputs(icmp_, current_->files_[level], &c->inputs_[0]);
-  GetRange(c->inputs_[0], &smallest, &largest);
+  AddBoundaryInputs(icmp_, current_->files_[level], &c->inputs_[0]);  // 先拓展
+  GetRange(c->inputs_[0], &smallest, &largest); // 获取c->inputs_[0]中所有文件的key范围
 
   current_->GetOverlappingInputs(level + 1, &smallest, &largest,
                                  &c->inputs_[1]);   // 找到level+1中所有与 [smallest, largest] 范围重叠的文件
@@ -1428,7 +1428,7 @@ void VersionSet::SetupOtherInputs(Compaction* c) {
 
   // Get entire range covered by compaction
   InternalKey all_start, all_limit;
-  GetRange2(c->inputs_[0], c->inputs_[1], &all_start, &all_limit);
+  GetRange2(c->inputs_[0], c->inputs_[1], &all_start, &all_limit);  // 获取c->inputs_[0]和c->inputs_[1]中所有文件的key范围
 
   // See if we can grow the number of inputs in "level" without
   // changing the number of "level+1" files we pick up.

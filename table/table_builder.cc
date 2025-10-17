@@ -144,7 +144,7 @@ void TableBuilder::Flush() {
     // 标记有一个待处理的索引条目
     r->pending_index_entry = true;
     // 刷写文件缓冲区
-    r->status = r->file->Flush();
+    r->status = r->file->Flush(); // 写入操作系统内核缓冲区，数据还在内存中，但在内核空间
   }
   // 如果有过滤器，则为新的数据块开始一个新的过滤器块
   if (r->filter_block != nullptr) {

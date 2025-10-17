@@ -296,7 +296,7 @@ class PosixWritableFile final : public WritableFile {
 
     // Fit as much as possible into buffer.
     size_t copy_size = std::min(write_size, kWritableFileBufferSize - pos_);
-    std::memcpy(buf_ + pos_, write_data, copy_size);
+    std::memcpy(buf_ + pos_, write_data, copy_size);  // 仅仅是写入缓冲区buf_，这是内存中的
     write_data += copy_size;
     write_size -= copy_size;
     pos_ += copy_size;
@@ -359,7 +359,7 @@ class PosixWritableFile final : public WritableFile {
 
   Status WriteUnbuffered(const char* data, size_t size) {
     while (size > 0) {
-      ssize_t write_result = ::write(fd_, data, size);
+      ssize_t write_result = ::write(fd_, data, size);  // POSIX 写文件系统调用，数据从用户空间缓冲区 → 操作系统内核的页缓存（Page Cache），数据还在内存中，但在内核空间
       if (write_result < 0) {
         if (errno == EINTR) {
           continue;  // Retry
@@ -406,9 +406,9 @@ class PosixWritableFile final : public WritableFile {
 #endif  // HAVE_FULLFSYNC
 
 #if HAVE_FDATASYNC
-    bool sync_success = ::fdatasync(fd) == 0;
+    bool sync_success = ::fdatasync(fd) == 0; // 只刷数据和必要的元数据
 #else
-    bool sync_success = ::fsync(fd) == 0;
+    bool sync_success = ::fsync(fd) == 0; // 刷数据和所有元数据，系统调用，真正的持久化，可以抵御断电
 #endif  // HAVE_FDATASYNC
 
     if (sync_success) {
@@ -455,7 +455,7 @@ class PosixWritableFile final : public WritableFile {
   }
 
   // buf_[0, pos_ - 1] contains data to be written to fd_.
-  char buf_[kWritableFileBufferSize];
+  char buf_[kWritableFileBufferSize]; // 64KB
   size_t pos_;
   int fd_;
 

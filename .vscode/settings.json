@@ -60,7 +60,8 @@
         "hash_set": "cpp",
         "slist": "cpp",
         "*.inc": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "xstring": "cpp"
     },
     "cmake.configureOnOpen": false,
     "cmake.buildDirectory": "${workspaceFolder}/build"

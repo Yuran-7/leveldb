@@ -758,7 +758,7 @@ void DBImpl::BackgroundCompaction() {
 
   if (imm_ != nullptr) {
     CompactMemTable();
-    return;
+    return; // 注意直接返回，刷盘优先级最高，可能出现一种情况，本来想执行压缩，但imm生成的太快了，只能执行刷盘，没机会压缩
   }
 
   Compaction* c;  // 定义在version_set.h中，表示一个压缩任务
@@ -1276,7 +1276,7 @@ Status DBImpl::Delete(const WriteOptions& options, const Slice& key) {
 }
 
 Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
-  Writer w(&mutex_);    // 构建一个写请求，不是加锁
+  Writer w(&mutex_);    // 构建一个写请求，不是加锁，mutex_是DBImpl的成员变量
   w.batch = updates;
   w.sync = options.sync;    // 默认false
   w.done = false;
@@ -1292,13 +1292,13 @@ Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
   if (w.done) {
     return w.status;
   }
-  // 整个Writer函数，只有这里涉及合并操作
-  Status status = MakeRoomForWrite(updates == nullptr); // 会放开锁一段时间，此时也可能有新的写线程进来
+  // 整个Writer函数，只有这里涉及Compaction操作
+  Status status = MakeRoomForWrite(updates == nullptr); // 可能会放开锁一段时间，此时也可能有新的写线程进来
   uint64_t last_sequence = versions_->LastSequence();
   printf("last_sequence=%llu\n",last_sequence);
   Writer* last_writer = &w;
   if (status.ok() && updates != nullptr) {  // nullptr batch is for compactions
-    WriteBatch* write_batch = BuildBatchGroup(&last_writer);    // 合并队列中的多个WriteBatch
+    WriteBatch* write_batch = BuildBatchGroup(&last_writer);    // 合并队列中的多个WriteBatch到一个新的更大的WriteBatch中
     WriteBatchInternal::SetSequence(write_batch, last_sequence + 1);
     last_sequence += WriteBatchInternal::Count(write_batch);
 
@@ -1307,17 +1307,17 @@ Status DBImpl::Write(const WriteOptions& options, WriteBatch* updates) {
     // and protects against concurrent loggers and concurrent writes
     // into mem_.
     {
-      mutex_.Unlock();  // 队长准备好了memtable空间，后来者均会排队，此处放锁并IO
-      status = log_->AddRecord(WriteBatchInternal::Contents(write_batch));  // 写入WAL
+      mutex_.Unlock();  // 此处放锁并IO，让下一批写线程进来排队，当前批次已经整理好了，可以写入memtable和WAL了
+      status = log_->AddRecord(WriteBatchInternal::Contents(write_batch));  // 写入WAL，在leveldb中log_是DBImpl的成员变量，在1604行初始化，Contents将write_batch转成一个Slice
       bool sync_error = false;
-      if (status.ok() && options.sync) {
+      if (status.ok() && options.sync) {  // 默认false
         status = logfile_->Sync();
         if (!status.ok()) {
           sync_error = true;
         }
       }
       if (status.ok()) {
-        status = WriteBatchInternal::InsertInto(write_batch, mem_); // 将批处理应用到 memtable
+        status = WriteBatchInternal::InsertInto(write_batch, mem_); // 将批处理应用到 memtable，在leveldb中mem_是DBImpl的成员变量
       }
       mutex_.Lock();
       if (sync_error) {
@@ -1394,7 +1394,7 @@ WriteBatch* DBImpl::BuildBatchGroup(Writer** last_writer) {
         assert(WriteBatchInternal::Count(result) == 0);
         WriteBatchInternal::Append(result, first->batch);
       }
-      WriteBatchInternal::Append(result, w->batch);
+      WriteBatchInternal::Append(result, w->batch); // 把 w->batch 追加到 result 里，本质上就是构造更长的字符串
     }
     *last_writer = w;
   }
@@ -1421,7 +1421,7 @@ Status DBImpl::MakeRoomForWrite(bool force) {   // force = (updates == nullptr)�
       // this delay hands over some CPU to the compaction thread in
       // case it is sharing the same core as the writer.
       mutex_.Unlock();
-      env_->SleepForMicroseconds(1000); // 当前获得锁的写线程延迟1毫秒，while循环在走一遍if-else
+      env_->SleepForMicroseconds(1000); // 队长线程延迟1毫秒，休眠结束后再进入While(true)循环
       allow_delay = false;  // Do not delay a single write more than once
       mutex_.Lock();
     } else if (!force &&
@@ -1432,11 +1432,11 @@ Status DBImpl::MakeRoomForWrite(bool force) {   // force = (updates == nullptr)�
       // We have filled up the current memtable, but the previous
       // one is still being compacted, so we wait.
       Log(options_.info_log, "Current memtable full; waiting...\n");
-      background_work_finished_signal_.Wait();  // 等待后台工作（主要是 imm_ 的 compaction）完成的信号
+      background_work_finished_signal_.Wait();  // 等待后台工作（主要是 imm_ 的 compaction）完成的信号，Wait()期间会释放 mutex_ 锁，被唤醒之后会重新获得锁
     } else if (versions_->NumLevelFiles(0) >= config::kL0_StopWritesTrigger) {  // 12，如果level 0层的SST的数量超过12
       // There are too many level-0 files.
       Log(options_.info_log, "Too many L0 files; waiting...\n");
-      background_work_finished_signal_.Wait();  // 等待后台 compaction 完成，以减少 L0 文件的数量
+      background_work_finished_signal_.Wait();  // 等待后台 compaction 完成，以减少 L0 文件的数量，Wait()期间会释放 mutex_ 锁
     } else {
       // 1. 当前 mem_ 已满 (或 force 为 true)
       // 2. 没有 imm_ 正在处理 (imm_ == nullptr)
@@ -1476,7 +1476,7 @@ Status DBImpl::MakeRoomForWrite(bool force) {   // force = (updates == nullptr)�
       mem_->Ref();
       force = false;  // Do not force another compaction if have room
       Log(options_.info_log, "Memtable switched to immutable; imm_ size: %llu bytes", static_cast<unsigned long long>(imm_->ApproximateMemoryUsage()));
-      MaybeScheduleCompaction();    // 调度一次 compaction 检查，因为现在有了新的 imm_ 需要处理
+      MaybeScheduleCompaction();    // 会调用background_work_finished_signal_.SignalAll(); 执行的某些时候也会放开锁
     }
   }
   return s;
