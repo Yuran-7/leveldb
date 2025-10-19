@@ -70,7 +70,7 @@ Status Table::Open(const Options& options, RandomAccessFile* file,
     rep->file = file;
     rep->metaindex_handle = footer.metaindex_handle();
     rep->index_block = index_block;
-    rep->cache_id = (options.block_cache ? ->NewId() : 0);
+    rep->cache_id = (options.block_cache ? options.block_cache->NewId() : 0);
     rep->filter_data = nullptr;
     rep->filter = nullptr;
     *table = new Table(rep);

@@ -623,7 +623,7 @@ class PosixEnv : public Env {
   }
 
   Status CreateDir(const std::string& dirname) override {
-    if (::mkdir(dirname.c_str(), 0755) != 0) {
+    if (::mkdir(dirname.c_str(), 0755) != 0) {  // mkdir 是 POSIX 标准库函数，/usr/include/x86_64-linux-gnu/sys/stat.h
       return PosixError(dirname, errno);
     }
     return Status::OK();

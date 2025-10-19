@@ -23,49 +23,8 @@
 
 namespace {
 
-bool ParseLine(const std::string& line, char& op, std::vector<std::string>& tokens) {
-    tokens.clear();
-    if (line.empty()) return false;
-    if (line[0] == '#') return false;
-
-    std::istringstream iss(line);
-    if (!(iss >> op)) return false;
-
-    switch (op) {
-        case 'I':
-        case 'U': {
-            std::string key;
-            if (!(iss >> key)) return false;
-            std::string value;
-            // Capture the rest of the line as value (may contain spaces)
-            std::getline(iss, value);
-            if (!value.empty() && value[0] == ' ') value.erase(0, 1);
-            if (value.empty()) return false;
-            tokens.push_back(std::move(key));
-            tokens.push_back(std::move(value));
-            return true;
-        }
-        case 'D':
-        case 'Q': {
-            std::string key;
-            if (!(iss >> key)) return false;
-            tokens.push_back(std::move(key));
-            return true;
-        }
-        case 'R':
-        case 'S': {
-            std::string start_key, end_key;
-            if (!(iss >> start_key >> end_key)) return false;
-            tokens.push_back(std::move(start_key));
-            tokens.push_back(std::move(end_key));
-            return true;
-        }
-        default:
-            return false;
-    }
-}
-
 // Range delete [start_key, end_key) by iterating keys and batching deletes.
+// 这里需要写一个函数是因为 LevelDB 没有直接的 RangeDelete API
 leveldb::Status RangeDelete(leveldb::DB* db, const std::string& start_key,
                                                         const std::string& end_key, size_t batch_limit = 1000) {
     leveldb::ReadOptions ro;
@@ -148,43 +107,51 @@ int main(int argc, char* argv[]) {
     std::string line;
     while (std::getline(fin, line)) {
         line_number++;
+
+        if (line.empty() || line[0] == '#') {
+            continue;
+        }
+
+        std::istringstream iss(line);
         char op;
-        std::vector<std::string> tokens;
-        if (!ParseLine(line, op, tokens)) {
-            if (!line.empty() && line[0] != '#') {
-                std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
-            }
+        if (!(iss >> op)) {
+            std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
             continue;
         }
 
         operations_processed++;
         switch (op) {
-            case 'I': {
-                const std::string& key = tokens[0];
-                const std::string& value = tokens[1];
-                s = db->Put(leveldb::WriteOptions(), key, value);
-                if (!s.ok()) {
-                    std::cerr << "Line " << line_number << ": Put failed for key '" << key << "': " << s.ToString() << std::endl;
-                } else {
-                    insert_count++;
-                    total_data_size_bytes += static_cast<long long>(key.size() + value.size());
-                }
-                break;
-            }
+            case 'I':
             case 'U': {
-                const std::string& key = tokens[0];
-                const std::string& value = tokens[1];
+                std::string key, value;
+                iss >> key;
+                std::getline(iss, value);
+                if (!value.empty() && value[0] == ' ') value.erase(0, 1);
+
+                if (key.empty() || value.empty()) {
+                    std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
+                    operations_processed--;
+                    continue;
+                }
+
                 s = db->Put(leveldb::WriteOptions(), key, value);
                 if (!s.ok()) {
-                    std::cerr << "Line " << line_number << ": Update failed for key '" << key << "': " << s.ToString() << std::endl;
+                    std::cerr << "Line " << line_number << ": Put/Update failed for key '" << key << "': " << s.ToString() << std::endl;
                 } else {
-                    update_count++;
+                    if (op == 'I') insert_count++;
+                    else update_count++;
                     total_data_size_bytes += static_cast<long long>(key.size() + value.size());
                 }
                 break;
             }
             case 'D': {
-                const std::string& key = tokens[0];
+                std::string key;
+                iss >> key;
+                if (key.empty()) {
+                    std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
+                    operations_processed--;
+                    continue;
+                }
                 s = db->Delete(leveldb::WriteOptions(), key);
                 if (!s.ok()) {
                     std::cerr << "Line " << line_number << ": Delete failed for key '" << key << "': " << s.ToString() << std::endl;
@@ -194,8 +161,13 @@ int main(int argc, char* argv[]) {
                 break;
             }
             case 'R': {
-                const std::string& start_key = tokens[0];
-                const std::string& end_key = tokens[1];
+                std::string start_key, end_key;
+                iss >> start_key >> end_key;
+                if (start_key.empty() || end_key.empty()) {
+                    std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
+                    operations_processed--;
+                    continue;
+                }
                 s = RangeDelete(db, start_key, end_key);
                 if (!s.ok()) {
                     std::cerr << "Line " << line_number << ": RangeDelete failed: " << s.ToString() << std::endl;
@@ -205,7 +177,13 @@ int main(int argc, char* argv[]) {
                 break;
             }
             case 'Q': {
-                const std::string& key = tokens[0];
+                std::string key;
+                iss >> key;
+                if (key.empty()) {
+                    std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
+                    operations_processed--;
+                    continue;
+                }
                 std::string value;
                 s = db->Get(leveldb::ReadOptions(), key, &value);
                 if (s.ok()) {
@@ -218,8 +196,13 @@ int main(int argc, char* argv[]) {
                 break;
             }
             case 'S': {
-                const std::string& start_key = tokens[0];
-                const std::string& end_key = tokens[1];
+                std::string start_key, end_key;
+                iss >> start_key >> end_key;
+                 if (start_key.empty() || end_key.empty()) {
+                    std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
+                    operations_processed--;
+                    continue;
+                }
                 leveldb::ReadOptions ro;
                 std::unique_ptr<leveldb::Iterator> it(db->NewIterator(ro));
                 bool found_any = false;
@@ -238,7 +221,8 @@ int main(int argc, char* argv[]) {
                 break;
             }
             default:
-                std::cerr << "ERROR: Unknown op '" << op << "'" << std::endl;
+                 std::cerr << "Skipping malformed or invalid line " << line_number << ": \"" << line << "\"" << std::endl;
+                operations_processed--;
                 break;
         }
 
@@ -279,7 +263,7 @@ int main(int argc, char* argv[]) {
 }
 
 /*
-g++ -std=c++17 -O2 \
+g++ -std=c++17  -g -O0 \
   -I/NV1/ysh/leveldb/include \
   -I/NV1/ysh/leveldb/build/include \
   /NV1/ysh/leveldb/tests/workload_runner.cpp \
@@ -288,4 +272,5 @@ g++ -std=c++17 -O2 \
   -pthread -ldl -lsnappy -lzstd
 */
 
-// ./workload_runner ./tests/testdb /NV1/ysh/dataset/workload.txt
+// ./workload_runner ./testdb /NV1/ysh/K-V-Workload-Generator/workload.txt
+// ./workload_runner ./testdb /NV1/ysh/K-V-Workload-Generator/point_query.txt

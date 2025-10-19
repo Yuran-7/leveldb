@@ -307,7 +307,7 @@ void DBImpl::RemoveObsoleteFiles() {
 Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {  // 是否需要写入新的manifest
   mutex_.AssertHeld();
 
-  env_->CreateDir(dbname_); // env_是DBImpl的成员变量，指向一个Env对象，负责文件系统操作，函数定义在util/env_posix.cc，如果已经有同名文件夹，被视为“目录已存在”，不是致命错误
+  env_->CreateDir(dbname_); // env_是DBImpl的成员变量，指向一个Env对象，负责文件系统操作，函数定义在util/env_posix.cc，如果已经有同名文件夹，虽然目录已存在返回错误，不是致命错误
   assert(db_lock_ == nullptr);  // db_lock是DBImpl的成员变量，类型是FileLock*
   Status s = env_->LockFile(LockFileName(dbname_), &db_lock_);  // 获取数据库锁文件，防止其他进程同时修改数据库，如果没有锁文件，会先创建。
   if (!s.ok()) {
@@ -1579,13 +1579,13 @@ Status DB::Delete(const WriteOptions& opt, const Slice& key) {
 DB::~DB() = default;
 
 Status DB::Open(const Options& options, const std::string& dbname, DB** dbptr) {    // include/leveldb/db.h中，只有一个Open，且是static函数
-  *dbptr = nullptr; // 初始化数据库指针为空，表示尚未成功打开
+  *dbptr = nullptr;
 
-  DBImpl* impl = new DBImpl(options, dbname); // DBImpl是DB的实现类
+  DBImpl* impl = new DBImpl(options, dbname);
   impl->mutex_.Lock();  // TODO
   VersionEdit edit; // 用于记录版本变更信息，这些变更将应用于 MANIFEST 文件
   // Recover handles create_if_missing, error_if_exists
-  bool save_manifest = false;
+  bool save_manifest = false; // 如果Recover函数快结束时，仍然是 false：说明在整个恢复过程中没有新的 SSTable 文件产生。现有的 MANIFEST 文件仍然是准确的，数据库可以直接使用
   // 1. 基于 MANIFEST 文件恢复 VersionSet（数据库元数据快照）
   // 2. 重放 WAL (Write-Ahead Log) 日志文件，将未持久化到 SSTable 的数据恢复到 MemTable
   // 3. 更新序列号 (sequence number) 和文件编号 (file number)
